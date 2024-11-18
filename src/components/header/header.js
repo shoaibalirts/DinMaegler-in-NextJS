@@ -2,6 +2,9 @@ import Image from "next/image";
 import classes from "./header.module.css";
 import Link from "next/link";
 export default function Header({ children }) {
+  function handlerLogin() {
+    console.log("clicked");
+  }
   return (
     <header className={classes.header}>
       <section className={classes.layer1}>
@@ -27,18 +30,17 @@ export default function Header({ children }) {
             <p>+45 7070 4000</p>
           </li>
         </ul>
-        <ul>
-          <li className={classes.logincontainer}>
-            <Image
-              className={classes.svgicon}
-              src="/images/personicon.svg"
-              width={20}
-              height={20}
-              alt="person icon"
-            />
-            <p>Log ind</p>
-          </li>
-        </ul>
+        {/* <ul> */}
+        <Link href="/login" className={classes.logincontainer}>
+          <Image
+            className={classes.svgicon}
+            src="/images/personicon.svg"
+            width={20}
+            height={20}
+            alt="person icon"
+          />
+          <p>Log ind</p>
+        </Link>
       </section>
       <section className={classes.navigation}>
         <nav className={classes.navbar}>
