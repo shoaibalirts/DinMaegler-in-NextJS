@@ -1,12 +1,10 @@
-import Image from "next/image";
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
-import HomePage from "@/components/homepage/home";
-export default function Home() {
+export default function PropertyDetailsPage() {
   return (
     <>
       <Header></Header>
-      <main>HERO_SECTION</main>
+      <main>Propery details</main>
       <Footer></Footer>
     </>
   );
