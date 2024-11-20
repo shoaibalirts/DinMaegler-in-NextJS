@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
 /* .svgicon {
   fill: white !important;
 } */
@@ -5,35 +7,45 @@
   fill: white !important;
 } */
 .header {
+  font-family: "Roboto";
 }
 .layer1 {
-  background-color: rgba(0, 0, 0, 0.452);
+  background-color: black;
   display: flex;
   padding: 0 20%;
   align-items: center;
   justify-content: space-between;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  flex-wrap: wrap;
 }
 .unorderedlist {
   display: flex;
-  margin-right: 1.5rem;
+  flex: 1;
+  /* width: max-content; */
+  /* margin-right: 1.5rem; */
+  min-width: 250px; /* Prevents collapsing too much */
+  max-width: 600px;
 }
 .emailcontainer {
   display: flex;
   padding-right: 1rem;
   align-items: center;
   gap: 0.5rem;
+  color: white;
 }
 .phonecontainer {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  color: white;
 }
 .logincontainer {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  color: white;
+  margin-right: 1rem;
 }
 
 .navigation {
@@ -65,9 +77,11 @@
 .link {
   text-decoration: none;
   color: inherit;
+  opacity: 0.8;
+
   &:hover {
     text-decoration: none;
-    opacity: 0.5;
+    opacity: 1;
     border-bottom: 1px solid red;
   }
 }

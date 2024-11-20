@@ -1,6 +1,9 @@
 import Image from "next/image";
 import classes from "./header.module.css";
 import Link from "next/link";
+import PhoneIcon from "../phoneicon";
+import PaperPlaneIcon from "../paperplaneicon";
+import PersonIcon from "../personicon";
 export default function Header({ children }) {
   function handlerLogin() {
     console.log("clicked");
@@ -10,35 +13,16 @@ export default function Header({ children }) {
       <section className={classes.layer1}>
         <ul className={classes.unorderedlist}>
           <li className={classes.emailcontainer}>
-            <Image
-              className={classes.svgicon}
-              src="/images/paperplane.svg"
-              width={20}
-              height={20}
-              alt="paper plane icon"
-            />
+            <PaperPlaneIcon />
             <p>4000@dinmaegler.dk</p>
           </li>
           <li className={classes.phonecontainer}>
-            <Image
-              className={classes.svgicon}
-              src="/images/phoneicon.svg"
-              width={20}
-              height={20}
-              alt="phone icon"
-            />
+            <PhoneIcon />
             <p>+45 7070 4000</p>
           </li>
         </ul>
-        {/* <ul> */}
         <Link href="/login" className={classes.logincontainer}>
-          <Image
-            className={classes.svgicon}
-            src="/images/personicon.svg"
-            width={20}
-            height={20}
-            alt="person icon"
-          />
+          <PersonIcon />
           <p>Log ind</p>
         </Link>
       </section>
