@@ -23,7 +23,7 @@
 @layer base {
   :root {
     --background-color: white;
-    --text-color: white;
+    --text-color: black;
     --primary-color: #162a41;
     --secondary-color: #6c757d;
     --light-bg: #ffffff;
@@ -34,8 +34,8 @@
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --background-color: #343a40;
-      --text-color: #ffffff;
+      --background-color: black;
+      --text-color: white;
       --secondary-color: #adb5bd;
       --light-bg: #495057;
       --dark-bg: #000000;
