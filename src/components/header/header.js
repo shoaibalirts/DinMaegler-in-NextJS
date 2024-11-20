@@ -46,12 +46,11 @@ export default function Header({ children }) {
         <nav className={classes.navbar}>
           <Link href="/" className={classes.logocontainer}>
             <Image
-              src="/images/house.svg"
-              width={60}
-              height={60}
+              src="/images/companylogo.svg"
+              width={240}
+              height={240}
               alt="bolig icon"
             />
-            <p className={classes.logo}>DIN MÆGLER</p>
           </Link>
           <ul className={classes.headerNavLinks}>
             <li>
