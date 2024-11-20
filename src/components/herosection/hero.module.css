@@ -17,15 +17,41 @@
 }
 .article {
   background-color: white;
-  margin: 0 30%;
-  padding: 1rem;
+  margin: 0 20%;
+  padding: 2rem;
+  text-align: left;
+  height: 200px;
+}
+.articleheading {
+  font-weight: 600;
+  font-size: 1.5rem;
 }
 .underline {
-  /* text-decoration: underline bold;
-  text-underline-offset: 8px; */
   border-bottom: 3px solid black;
+  padding-bottom: 0.5rem;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+.forminput {
+  border: 1px solid rgba(128, 128, 128, 0.526);
+  padding: 5px;
+  width: 100%;
+  /* margin-top: 1rem; */
+}
+.inputandsearchbtn {
+  display: flex;
+  align-items: center;
 }
 .searchBtn {
+  margin-left: 1rem;
+  padding: 5px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: black;
+  color: white;
   opacity: 0.9;
   transition: opacity 0.3s;
 

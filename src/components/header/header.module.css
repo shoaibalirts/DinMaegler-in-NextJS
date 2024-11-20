@@ -22,9 +22,8 @@
 .unorderedlist {
   display: flex;
   flex: 1;
-  /* width: max-content; */
   /* margin-right: 1.5rem; */
-  min-width: 250px; /* Prevents collapsing too much */
+  min-width: 250px;
   max-width: 600px;
 }
 .emailcontainer {
@@ -45,7 +44,7 @@
   align-items: center;
   gap: 0.5rem;
   color: white;
-  margin-right: 1rem;
+  margin-right: 0;
 }
 
 .navigation {
