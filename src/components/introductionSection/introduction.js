@@ -33,7 +33,7 @@ export default function Introduction() {
             </p>
             <section className={classes.subarticles}>
               <Article
-                imgSrc="/images/house 1.svg"
+                imgSrc="/images/house1.svg"
                 heading="4829"
                 text="boliger solgt"
               />

@@ -1,0 +1,16 @@
+/* .article {
+  color: red;
+  display: flex;
+} */
+.div {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+.articleheading {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.text {
+  margin-left: 6rem;
+}
