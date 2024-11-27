@@ -4,6 +4,7 @@ import Footer from "@/components/footer/footer";
 import HomePage from "@/components/homepage/home";
 import Hero from "@/components/herosection/hero";
 import { getAllHomes, getNumberOfHomesOnSale } from "@/lib/apidinmaegler";
+import Introduction from "@/components/introductionSection/introduction";
 
 export default async function Home() {
   const allHomesData = await getAllHomes();
@@ -24,6 +25,7 @@ export default async function Home() {
       <Header></Header>
       <main>
         <Hero heroData={heroDataObj} />
+        <Introduction />
       </main>
 
       <Footer></Footer>
