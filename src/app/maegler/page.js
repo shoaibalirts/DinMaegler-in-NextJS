@@ -4,7 +4,7 @@ export default function MaeglerPage() {
   return (
     <>
       <Header></Header>
-      <main>Maegler</main>
+      <main>Maegler/Agents</main>
       <Footer></Footer>
     </>
   );

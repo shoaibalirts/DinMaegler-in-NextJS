@@ -38,7 +38,7 @@ export default function Header({ children }) {
           </Link>
           <ul className={classes.headerNavLinks}>
             <li>
-              <Link href="/propertylist" className={classes.link}>
+              <Link href="/boligertilsalg" className={classes.link}>
                 Boliger til salg
               </Link>
             </li>

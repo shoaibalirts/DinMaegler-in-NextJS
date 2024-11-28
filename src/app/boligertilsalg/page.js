@@ -4,7 +4,7 @@ export default function PropertyListPage() {
   return (
     <>
       <Header></Header>
-      <main>propertylist page</main>
+      <main>Boliger til salg</main>
       <Footer></Footer>
     </>
   );
