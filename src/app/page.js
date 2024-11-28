@@ -10,6 +10,7 @@ import ThreeArticlesSection from "@/components/threearticlesSection/Threearticle
 import UdvalgteBoligerSection from "@/components/udvalgteboligerSection/udvalgteboligerSection";
 import Article from "@/components/udvalgteboligerSection/article";
 import classes from "./page.module.css";
+import NyhedsBrevSection from "@/components/nyhedsbrevSection/nyhedsbrevSection";
 export default async function Home() {
   const allHomesData = await getAllHomes();
   const numberOfHomesOnSale = await getNumberOfHomesOnSale();
@@ -21,7 +22,7 @@ export default async function Home() {
     numberOfHomesOnSale: numberOfHomesOnSale,
     numberOfButikker: 74,
   };
-const limitedArticles = allHomesData.slice(0,4);
+  const limitedArticles = allHomesData.slice(0, 4);
   return (
     <>
       <Header></Header>
@@ -50,9 +51,11 @@ const limitedArticles = allHomesData.slice(0,4);
               />
             </Link>
           ))}
-          <Link href="/boligertilsalg" className={classes.link}>See alle boliger</Link>
-
+          <Link href="/boligertilsalg" className={classes.link}>
+            See alle boliger
+          </Link>
         </UdvalgteBoligerSection>
+        <NyhedsBrevSection />
       </main>
 
       <Footer></Footer>
