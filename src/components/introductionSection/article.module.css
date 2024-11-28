@@ -1,0 +1,16 @@
+/* article inside introduction section */
+.article {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.image {
+  background-color: #51789d69;
+  padding: 10px;
+  object-fit: cover;
+  display: block;
+}
+.heading {
+  font-size: 1.2rem;
+  font-weight: 500;
+}

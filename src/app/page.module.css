@@ -1,0 +1,9 @@
+.link {
+    padding: 1rem 1.5rem;
+    background-color: #162A41;
+    color: white;
+    margin: auto;
+    &:hover {
+        opacity: 0.9;
+    }
+}

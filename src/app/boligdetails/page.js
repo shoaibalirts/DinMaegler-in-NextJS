@@ -4,7 +4,7 @@ export default function PropertyDetailsPage() {
   return (
     <>
       <Header></Header>
-      <main>Propery details</main>
+      <main>Bolig details</main>
       <Footer></Footer>
     </>
   );

@@ -11,29 +11,51 @@ export default function Article({
   city,
   ejerUdgifter,
   energyLabel,
-  totalRooms,
-  area,
+  rooms,
+  livingSpace,
   price,
 }) {
+  let backgroundColor = "green";
+  if (energyLabel === "A") {
+    backgroundColor = "red";
+  } else if (energyLabel === "B") {
+    backgroundColor = "yellow";
+  } else if (energyLabel === "C") {
+    backgroundColor = "orange";
+  } else if (energyLabel === "D") {
+    backgroundColor = "blue";
+  }
+  const myStyle = {
+    backgroundColor: backgroundColor,
+  };
   return (
-    <article>
+    <article className={classes.article}>
       <Image
+        className={classes.image}
         src={imgSrc}
-        width={imgWidth}
-        height={imgHeight}
+        width={375}
+        height={500}
         alt={alt}
         priority
       />
-      <p>{address}</p>
-      <p>{postalCode}</p>
-      <p>{city}</p>
-      <p>{boligType}</p>
-      <p>Ejerudgifter: {ejerUdgifter}kr.</p>
+      <h3 className={classes.address}>{address}</h3>
+      <div className={classes.postalcodecontainer}>
+        <p>{postalCode}</p>
+        <p>{city}</p>
+      </div>
+      <div className={classes.boligtypecontainer}>
+        <p className={classes.boligtype}>{boligType}.</p>
+        <p className={classes.ejerudgifter}>Ejerudgifter: {ejerUdgifter}kr.</p>
+      </div>
       <hr />
-      <p>{energyLabel}</p>
-      <p>{totalRooms} værelser.</p>
-      <p>{area}m2</p>
-      <p>Kr. {price}</p>
+      <div className={classes.energylabelcontainer}>
+        <p style={myStyle} className={classes.energylabel}>
+          {energyLabel}
+        </p>
+        <p className={classes.rooms}>{rooms} værelser.</p>
+        <p className={classes.area}>{livingSpace}m²</p>
+        <p className={classes.price}>Kr. {price}</p>
+      </div>
     </article>
   );
 }

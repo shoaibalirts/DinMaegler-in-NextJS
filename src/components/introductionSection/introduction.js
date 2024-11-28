@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Article from "../article/article";
+import Article from "./article";
 import classes from "./introduction.module.css";
 // Introduction is a section which is available in home page
 export default function Introduction() {
