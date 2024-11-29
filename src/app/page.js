@@ -17,13 +17,13 @@ import AgentArticle from "@/components/agentsSection/article";
 import classes from "./page.module.css";
 import NyhedsBrevSection from "@/components/nyhedsbrevSection/nyhedsbrevSection";
 import AgentsSection from "@/components/agentsSection/agentsSection";
+import OpdateringSection from "@/components/opdateringSection/opdateringSection";
 export default async function Home() {
   const allHomesData = await getAllHomes();
   const allAgents = await getAllAgents();
-  console.log(allAgents);
 
   const numberOfHomesOnSale = await getNumberOfHomesOnSale();
-  // console.log("allHomesData", allHomesData);
+  console.log("allHomesData", allHomesData);
   //console.log("allHomesData", numberOfHomesOnSale);
   const heroDataObj = {
     image: allHomesData[5].images[3].url,
@@ -58,6 +58,7 @@ export default async function Home() {
                 rooms={article.rooms}
                 livingSpace={article.livingspace}
                 price={article.price}
+                boligId={article.id}
               />
             </Link>
           ))}
@@ -85,9 +86,10 @@ export default async function Home() {
             Se alle mæglere
           </Link>
         </AgentsSection>
+        <OpdateringSection />
       </main>
 
-      <Footer></Footer>
+      <Footer>Footer section Should be completed at the end of project</Footer>
     </>
   );
 }

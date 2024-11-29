@@ -14,7 +14,10 @@ export default function Article({
   rooms,
   livingSpace,
   price,
+  boligId,
 }) {
+  console.log(boligId);
+
   let backgroundColor = "green";
   if (energyLabel === "A") {
     backgroundColor = "red";
