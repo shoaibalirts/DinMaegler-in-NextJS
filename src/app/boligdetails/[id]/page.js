@@ -4,7 +4,7 @@ export default function PropertyDetailsPage() {
   return (
     <>
       <Header></Header>
-      <main>Bolig details Main Page</main>
+      <main>Bolig details as per bolig id. needs to fetch data fro api...</main>
       <Footer></Footer>
     </>
   );

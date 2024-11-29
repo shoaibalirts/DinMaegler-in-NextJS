@@ -4,7 +4,10 @@ export default function MaeglerPage() {
   return (
     <>
       <Header></Header>
-      <main>Maegler/Agents</main>
+      <main>
+        Maegler/Agents Main Page to show all agents here by fetching
+        allhomesdata, reuse the article card and display all boliger
+      </main>
       <Footer></Footer>
     </>
   );

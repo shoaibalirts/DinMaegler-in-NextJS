@@ -23,8 +23,10 @@ export default async function Home() {
   const allAgents = await getAllAgents();
 
   const numberOfHomesOnSale = await getNumberOfHomesOnSale();
-  console.log("allHomesData", allHomesData);
+  // console.log("allHomesData", allHomesData);
   //console.log("allHomesData", numberOfHomesOnSale);
+  console.log(allAgents);
+
   const heroDataObj = {
     image: allHomesData[5].images[3].url,
     heading: "Søg efter din drømmebolig",
@@ -42,7 +44,7 @@ export default async function Home() {
         <ThreeArticlesSection />
         <UdvalgteBoligerSection>
           {limitedArticles.map((article, index) => (
-            <Link href="/boligdetails">
+            <Link href={`/boligdetails/${article.id}`}>
               <Article
                 key={`udvalgtearticle-{index}`}
                 imgSrc={article.images[0].url}
@@ -69,7 +71,7 @@ export default async function Home() {
         {/* <NyhedsBrevSection /> */}
         <AgentsSection>
           {limitedAgents.map((article, index) => (
-            <Link href="/contactagent">
+            <Link href={`/maegler/${article.id}`}>
               <AgentArticle
                 key={`agents-{index}`}
                 imgSrc={article.image.url}

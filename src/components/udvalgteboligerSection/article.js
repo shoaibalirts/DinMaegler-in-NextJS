@@ -16,7 +16,7 @@ export default function Article({
   price,
   boligId,
 }) {
-  console.log(boligId);
+  // console.log(boligId);
 
   let backgroundColor = "green";
   if (energyLabel === "A") {
