@@ -21,3 +21,14 @@ export async function getNumberOfHomesOnSale() {
     console.log(error);
   }
 }
+
+// get all agents
+export async function getAllAgents() {
+  try {
+    const response = await fetch("https://dinmaegler.onrender.com/agents");
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}

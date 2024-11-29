@@ -4,15 +4,24 @@ import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
 import HomePage from "@/components/homepage/home";
 import Hero from "@/components/herosection/hero";
-import { getAllHomes, getNumberOfHomesOnSale } from "@/lib/apidinmaegler";
+import {
+  getAllAgents,
+  getAllHomes,
+  getNumberOfHomesOnSale,
+} from "@/lib/apidinmaegler";
 import Introduction from "@/components/introductionSection/introduction";
 import ThreeArticlesSection from "@/components/threearticlesSection/ThreearticlesSection";
 import UdvalgteBoligerSection from "@/components/udvalgteboligerSection/udvalgteboligerSection";
 import Article from "@/components/udvalgteboligerSection/article";
+import AgentArticle from "@/components/agentsSection/article";
 import classes from "./page.module.css";
 import NyhedsBrevSection from "@/components/nyhedsbrevSection/nyhedsbrevSection";
+import AgentsSection from "@/components/agentsSection/agentsSection";
 export default async function Home() {
   const allHomesData = await getAllHomes();
+  const allAgents = await getAllAgents();
+  console.log(allAgents);
+
   const numberOfHomesOnSale = await getNumberOfHomesOnSale();
   // console.log("allHomesData", allHomesData);
   //console.log("allHomesData", numberOfHomesOnSale);
@@ -23,6 +32,7 @@ export default async function Home() {
     numberOfButikker: 74,
   };
   const limitedArticles = allHomesData.slice(0, 4);
+  const limitedAgents = allAgents.slice(0, 3);
   return (
     <>
       <Header></Header>
@@ -55,7 +65,26 @@ export default async function Home() {
             See alle boliger
           </Link>
         </UdvalgteBoligerSection>
-        <NyhedsBrevSection />
+        {/* <NyhedsBrevSection /> */}
+        <AgentsSection>
+          {limitedAgents.map((article, index) => (
+            <Link href="/contactagent">
+              <AgentArticle
+                key={`agents-{index}`}
+                imgSrc={article.image.url}
+                imgWidth={article.image.width}
+                imgHeight={article.image.height}
+                alt={article.image.name}
+                name={article.name}
+                title={article.title}
+                id={article.id}
+              />
+            </Link>
+          ))}
+          <Link href="/maegler" className={`${classes.link} ${classes.margin}`}>
+            Se alle mæglere
+          </Link>
+        </AgentsSection>
       </main>
 
       <Footer></Footer>
