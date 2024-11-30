@@ -9,6 +9,7 @@ import AgentArticle from "@/components/agentsSection/article";
 export default async function MaeglerPage() {
   const allAgents = await getAllAgents();
   const allHomes = await getAllHomes();
+  
   return (
     <>
       <Header></Header>

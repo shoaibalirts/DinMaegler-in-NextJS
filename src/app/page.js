@@ -38,6 +38,9 @@ export default async function Home() {
   const heading = "Udvalgte Boliger";
   const text =
     "There are many variations of passages of Lorem Ipsum available but the this in majority have suffered alteration in some";
+  const agentsHeading = "Mød vores engagerede medarbejdere";
+  const agentsText =
+    "Din Mægler er garant for altid veluddannet assistance i dit boligsalg. Kontakt en af vores medarbejdere.";
   return (
     <>
       <Header></Header>
@@ -72,7 +75,7 @@ export default async function Home() {
           </Link>
         </UdvalgteBoligerSection>
         {/* <NyhedsBrevSection /> */}
-        <AgentsSection>
+        <AgentsSection heading={agentsHeading} text={agentsText}>
           {limitedAgents.map((article, index) => (
             <Link href={`/maegler/${article.id}`}>
               <AgentArticle
