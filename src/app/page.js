@@ -35,6 +35,9 @@ export default async function Home() {
   };
   const limitedArticles = allHomesData.slice(0, 4);
   const limitedAgents = allAgents.slice(0, 3);
+  const heading = "Udvalgte Boliger";
+  const text =
+    "There are many variations of passages of Lorem Ipsum available but the this in majority have suffered alteration in some";
   return (
     <>
       <Header></Header>
@@ -42,11 +45,11 @@ export default async function Home() {
         <Hero heroData={heroDataObj} />
         <Introduction />
         <ThreeArticlesSection />
-        <UdvalgteBoligerSection>
+        <UdvalgteBoligerSection heading={heading} text={text}>
           {limitedArticles.map((article, index) => (
             <Link href={`/boligdetails/${article.id}`}>
               <Article
-                key={`udvalgtearticle-{index}`}
+                key={`udvalgtearticle-${index}`}
                 imgSrc={article.images[0].url}
                 imgWidth={article.images[0].width}
                 imgHeight={article.images[0].height}
@@ -73,7 +76,7 @@ export default async function Home() {
           {limitedAgents.map((article, index) => (
             <Link href={`/maegler/${article.id}`}>
               <AgentArticle
-                key={`agents-{index}`}
+                key={`agents-${index}`}
                 imgSrc={article.image.url}
                 imgWidth={article.image.width}
                 imgHeight={article.image.height}
