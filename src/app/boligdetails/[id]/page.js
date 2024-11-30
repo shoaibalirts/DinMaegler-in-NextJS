@@ -1,6 +1,10 @@
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
-export default function PropertyDetailsPage() {
+import { getHomeDetail } from "@/lib/apidinmaegler";
+export default async function BoligDetailsPage({ params }) {
+  const { id } = await params;  
+  const boligDetail = await getHomeDetail(id);
+  console.log("BoligDetail: ", boligDetail);
   return (
     <>
       <Header></Header>

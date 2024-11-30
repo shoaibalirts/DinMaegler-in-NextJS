@@ -11,6 +11,17 @@ export async function getAllHomes() {
   }
 }
 
+// get a home detail as per home id
+export async function getHomeDetail(id) {
+  try {
+    const response = await fetch(`https://dinmaegler.onrender.com/homes/${id}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // get total homes for sale
 export async function getNumberOfHomesOnSale() {
   try {
@@ -26,6 +37,17 @@ export async function getNumberOfHomesOnSale() {
 export async function getAllAgents() {
   try {
     const response = await fetch("https://dinmaegler.onrender.com/agents");
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// get a Agent data as per agent id
+export async function getAgentDetail(id) {
+  try {
+    const response = await fetch(`https://dinmaegler.onrender.com/agents/${id}`);
     const data = await response.json();
     return data;
   } catch (error) {
