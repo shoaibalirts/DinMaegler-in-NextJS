@@ -1,0 +1,28 @@
+.filterboligerSection {
+  padding: 0 20%;
+}
+.heading{
+  margin-bottom: 1rem;
+}
+.form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 5rem;
+}
+.formElement {
+    display: flex;
+    flex-direction: column;
+}
+
+.ejendomstype {
+  border: 1px solid silver;
+  
+  padding-left: 5px;
+  padding-right: 5rem;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.label {
+  margin-bottom: 10px;
+}

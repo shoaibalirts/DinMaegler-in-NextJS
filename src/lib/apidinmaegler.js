@@ -57,9 +57,9 @@ export async function getAgentDetail(id) {
 
 
 // get homes by type
-export async function getHomesByType() {
+export async function getHomesByType(type_eq) {
   try {
-    const response = await fetch("https://dinmaegler.onrender.com/homes");
+    const response = await fetch(`https://dinmaegler.onrender.com/homes?type_eq=${type_eq}`);
     const data = await response.json();
     return data;
   } catch (error) {

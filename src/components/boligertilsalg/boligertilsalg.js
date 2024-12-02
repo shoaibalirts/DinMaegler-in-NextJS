@@ -3,7 +3,31 @@ import classes from "./boligertilsalg.module.css";
 import Article from "./article";
 import Link from "next/link";
 import FilterBoliger from "./filterBoliger";
+import { useState, useEffect } from "react";
 export default function Boligertilsalg({ allHomesData }) {
+  const [filteredHomesData, setFilteredHomesData] = useState(allHomesData);
+  useEffect(() => {
+    setFilteredHomesData(allHomesData);
+  }, [allHomesData]);
+  // Function to filter homes based on selected filters
+  const filterHomes = (filters) => {
+    const { ejendomsData, prisInterval } = filters;
+
+    let filteredData = allHomesData;
+
+    // Apply the filters to the homes data
+    if (ejendomsData) {
+      filteredData = filteredData.filter((home) => home.type === ejendomsData);
+    }
+
+    if (prisInterval !== undefined) {
+      filteredData = filteredData.filter(
+        (home) => home.price >= prisInterval[0] && home.price <= prisInterval[1]
+      );
+    }
+
+    setFilteredHomesData(filteredData);
+  };
   return (
     <>
       <section
@@ -14,10 +38,13 @@ export default function Boligertilsalg({ allHomesData }) {
       >
         <h2 className={classes.heading}>Boliger til salg</h2>
       </section>
-      <FilterBoliger />
+      
+      {/* Pass filter function to the FilterBoliger */}
+      <FilterBoliger onFilterChange={filterHomes} />
 
+      {/* <FilterBoliger /> */}
       <section className={classes.allhomes}>
-        {allHomesData.map((article, index) => (
+        {filteredHomesData.map((article, index) => (
           <Link
             href={`/boligdetails/${article.id}`}
             key={`articleboligertilsalg-${index}`}
