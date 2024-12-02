@@ -54,3 +54,25 @@ export async function getAgentDetail(id) {
     console.log(error);
   }
 }
+
+
+// get homes by type
+export async function getHomesByType() {
+  try {
+    const response = await fetch("https://dinmaegler.onrender.com/homes");
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+// get homes by price
+export async function getHomesByPrice() {
+  try {
+    const response = await fetch("https://dinmaegler.onrender.com/homes");
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
