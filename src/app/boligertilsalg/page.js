@@ -5,6 +5,7 @@ import UdvalgteBoligerSection from "@/components/udvalgteboligerSection/udvalgte
 import Article from "@/components/udvalgteboligerSection/article";
 import { getAllHomes } from "@/lib/apidinmaegler";
 import classes from "./page.module.css";
+import Boligertisalg from "@/components/boligertilsalg/boligertilsalg";
 export default async function PropertyListPage() {
   const allHomesData = await getAllHomes();
   return (
@@ -19,7 +20,7 @@ export default async function PropertyListPage() {
         >
           <h2 className={classes.heading}>Boliger til salg</h2>
         </section>
-        <UdvalgteBoligerSection>
+        <Boligertisalg>
           {allHomesData.map((article, index) => (
             <Link href={`/boligdetails/${article.id}`}>
               <Article
@@ -41,7 +42,7 @@ export default async function PropertyListPage() {
               />
             </Link>
           ))}
-        </UdvalgteBoligerSection>
+        </Boligertisalg>
         <Footer></Footer>
       </main>
     </>
