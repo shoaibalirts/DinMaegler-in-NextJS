@@ -9,25 +9,12 @@ export default function Boligertilsalg({ allHomesData }) {
   useEffect(() => {
     setFilteredHomesData(allHomesData);
   }, [allHomesData]);
-  // Function to filter homes based on selected filters
-  const filterHomes = (filters) => {
-    const { ejendomsData, prisInterval } = filters;
+  
+  function filterHomes(receivedDataFromFilteredBoliger) {
+    console.log(receivedDataFromFilteredBoliger);
+    setFilteredHomesData(receivedDataFromFilteredBoliger);
+  }
 
-    let filteredData = allHomesData;
-
-    // Apply the filters to the homes data
-    if (ejendomsData) {
-      filteredData = filteredData.filter((home) => home.type === ejendomsData);
-    }
-
-    if (prisInterval !== undefined) {
-      filteredData = filteredData.filter(
-        (home) => home.price >= prisInterval[0] && home.price <= prisInterval[1]
-      );
-    }
-
-    setFilteredHomesData(filteredData);
-  };
   return (
     <>
       <section
@@ -38,8 +25,7 @@ export default function Boligertilsalg({ allHomesData }) {
       >
         <h2 className={classes.heading}>Boliger til salg</h2>
       </section>
-      
-      {/* Pass filter function to the FilterBoliger */}
+
       <FilterBoliger onFilterChange={filterHomes} />
 
       {/* <FilterBoliger /> */}
