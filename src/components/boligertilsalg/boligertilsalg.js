@@ -28,7 +28,6 @@ export default function Boligertilsalg({ allHomesData }) {
 
       <FilterBoliger onFilterChange={filterHomes} />
 
-      {/* <FilterBoliger /> */}
       <section className={classes.allhomes}>
         {filteredHomesData.map((article, index) => (
           <Link

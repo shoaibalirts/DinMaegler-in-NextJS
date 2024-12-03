@@ -1,19 +1,19 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import classes from "./filterBoliger.module.css";
 import { getHomesByType } from "@/lib/apidinmaegler";
 import MultiRangeSlider from "./multirangeslider";
 export default function FilterBoliger({ onFilterChange }) {
   const [selectedValue, setSelectedValue] = useState("");
   const [ejendomsData, setEjendomsData] = useState("");
+  // const ejendomstype = useRef();
   useEffect(() => {
     async function fetchEjendoms() {
-      setIsLoading(true);
       const response = await getHomesByType(selectedValue);
       console.log(response);
 
       if (!response.ok) {
-        setError("Failed to fetch ejendoms data");
+        console.log("we have to render page");
       }
       console.log(response);
       onFilterChange(response);
@@ -23,8 +23,10 @@ export default function FilterBoliger({ onFilterChange }) {
   }, [selectedValue]);
 
   function handleSelected(e) {
-    // console.log(e.target.value);
     setSelectedValue(e.target.value);
+    // console.log(e.target.value);
+    // console.log(ejendomstype.current.value);
+    // setSelectedValue(ejendomstype.current.value);
   }
 
   return (
@@ -45,9 +47,10 @@ export default function FilterBoliger({ onFilterChange }) {
               className={classes.ejendomstype}
               value={selectedValue}
               onChange={handleSelected}
+              // ref={ejendomstype}
             >
               <option value="" defaultValue="">
-                Select Ejendoms Type...
+                Vælg Ejendoms Type...
               </option>
               <option value="Ejerlejlighed">Ejerlejlighed</option>
               <option value="Villa">Villa</option>
@@ -56,7 +59,7 @@ export default function FilterBoliger({ onFilterChange }) {
             </select>
           </p>
 
-          <p className={classes.formElement}>
+          <div className={`${classes.formElement} ${classes.twowayslider}`}>
             <label className={classes.label}>Pris-interval</label>
             <MultiRangeSlider
               min={0}
@@ -65,7 +68,7 @@ export default function FilterBoliger({ onFilterChange }) {
                 console.log(`min = ${min}, max = ${max}`)
               }
             />
-          </p>
+          </div>
         </form>
       </section>
     </>

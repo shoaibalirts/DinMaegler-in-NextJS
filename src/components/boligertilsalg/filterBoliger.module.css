@@ -14,6 +14,9 @@
     display: flex;
     flex-direction: column;
 }
+.twowayslider {
+  /* margin-top: 3rem; */
+}
 
 .ejendomstype {
   border: 1px solid silver;

@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
-import PropTypes from "prop-types";
 import classes from "./multiRangeSlider.module.css";
 
 const MultiRangeSlider = ({ min, max, onChange }) => {
@@ -79,10 +78,5 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
   );
 };
 
-MultiRangeSlider.propTypes = {
-  min: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
 
 export default MultiRangeSlider;
