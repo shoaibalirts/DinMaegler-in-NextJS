@@ -26,10 +26,11 @@
   z-index: 2;
 }
 .div2 {
-  margin-top: 15rem;
+  margin-top: 12rem;
+  padding: 5rem;
 }
 .address {
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 .address,
 .boligtype {
@@ -42,12 +43,20 @@
 .energylabelcontainer {
   display: flex;
   align-items: center;
-  margin-left: 1rem;
+  /* margin-left: 1rem; */
+  margin-top: 10px;
 }
-
+.boligtypecontainer {
+  margin-top: 1rem;
+}
 .postalcodecontainer {
   gap: 5px;
+  margin-top: 10px;
 }
+.energylabelcontainer {
+  margin-top: 1rem;
+}
+
 .energylabel {
   padding: 3px 5px;
   margin-right: 1rem;
