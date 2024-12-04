@@ -78,11 +78,23 @@ export async function getHomesByType(type_eq) {
   }
 }
 // get homes by price
-export async function getHomesByPrice() {
+export async function getHomesByTypeAndPrice(type_eq, price_gte, price_lte) {
+  console.log("type_eq: ", type_eq);
+  console.log("price_gte: ", price_gte);
+  console.log("price_lte: ", price_lte);
+
   try {
-    const response = await fetch("https://dinmaegler.onrender.com/homes");
-    const data = await response.json();
-    return data;
+    if (type_eq === "" || price_gte === "" || price_lte === "") {
+      const response = await fetch("https://dinmaegler.onrender.com/homes");
+      const data = await response.json();
+      return data;
+    } else {
+      const response = await fetch(
+        `https://dinmaegler.onrender.com/homes?type_eq=${type_eq}&price_gte=${price_gte}&price_lte=${price_lte}`
+      );
+      const data = await response.json();
+      return data;
+    }
   } catch (error) {
     console.log(error);
   }
