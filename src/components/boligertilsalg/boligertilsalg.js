@@ -9,7 +9,7 @@ export default function Boligertilsalg({ allHomesData }) {
   useEffect(() => {
     setFilteredHomesData(allHomesData);
   }, [allHomesData]);
-  
+
   function filterHomes(receivedDataFromFilteredBoliger) {
     console.log(receivedDataFromFilteredBoliger);
     setFilteredHomesData(receivedDataFromFilteredBoliger);
@@ -30,27 +30,29 @@ export default function Boligertilsalg({ allHomesData }) {
 
       <section className={classes.allhomes}>
         {filteredHomesData.map((article, index) => (
-          <Link
-            href={`/boligdetails/${article.id}`}
-            key={`articleboligertilsalg-${index}`}
-          >
-            <Article
-              imgSrc={article.images[0].url}
-              imgWidth={article.images[0].width}
-              imgHeight={article.images[0].height}
-              alt={article.images[0].name}
-              address={article.adress1}
-              postalCode={article.postalcode}
-              city={article.city}
-              boligType={article.type}
-              ejerUdgifter={article.cost}
-              energyLabel={article.energylabel}
-              rooms={article.rooms}
-              livingSpace={article.livingspace}
-              price={article.price}
-              boligId={article.id}
-            />
-          </Link>
+          // <Link
+          //   href={`/boligdetails/${article.id}`}
+          //   key={`articleboligertilsalg-${index}`}
+          // >
+          <Article
+            articleId={article.id}
+            key={index}
+            imgSrc={article.images[0].url}
+            imgWidth={article.images[0].width}
+            imgHeight={article.images[0].height}
+            alt={article.images[0].name}
+            address={article.adress1}
+            postalCode={article.postalcode}
+            city={article.city}
+            boligType={article.type}
+            ejerUdgifter={article.cost}
+            energyLabel={article.energylabel}
+            rooms={article.rooms}
+            livingSpace={article.livingspace}
+            price={article.price}
+            boligId={article.id}
+          />
+          // </Link>
         ))}
       </section>
     </>
