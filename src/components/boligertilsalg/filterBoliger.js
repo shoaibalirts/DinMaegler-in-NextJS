@@ -2,8 +2,8 @@
 import { useState, useEffect, useRef } from "react";
 import classes from "./filterBoliger.module.css";
 import { getHomesByType, getHomesByTypeAndPrice } from "@/lib/apidinmaegler";
-import MultiRangeSlider from "./multirangeslider";
-import * as Slider from "@radix-ui/react-slider";
+// import MultiRangeSlider from "./multirangeslider";
+// import * as Slider from "@radix-ui/react-slider";
 
 export default function FilterBoliger({ onFilterChange }) {
   const [selectedValue, setSelectedValue] = useState("");

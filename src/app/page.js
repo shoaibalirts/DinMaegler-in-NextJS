@@ -41,7 +41,8 @@ export default async function Home() {
   const agentsHeading = "Mød vores engagerede medarbejdere";
   const agentsText =
     "Din Mægler er garant for altid veluddannet assistance i dit boligsalg. Kontakt en af vores medarbejdere.";
-  return (
+  let random = Math.floor((Math.random()*100)+1);
+    return (
     <>
       <Header></Header>
       <main>
@@ -52,7 +53,7 @@ export default async function Home() {
           {limitedArticles.map((article, index) => (
             <Link href={`/boligdetails/${article.id}`}>
               <Article
-                key={`udvalgtearticle-${index}`}
+                key={`udvalgtearticle-${random}`}
                 imgSrc={article.images[0].url}
                 imgWidth={article.images[0].width}
                 imgHeight={article.images[0].height}
