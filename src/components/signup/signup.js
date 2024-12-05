@@ -8,6 +8,9 @@ export default function Signup() {
     const fd = new FormData(event.target);
     const data = Object.fromEntries(fd.entries());
     console.log("Signup data: ", data);
+    event.target.reset();
+    console.log("cleared Signup data: ", data);
+
   }
 
   return (
