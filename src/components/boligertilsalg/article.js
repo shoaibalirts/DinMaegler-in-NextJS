@@ -37,11 +37,14 @@ export default function Article({
   const myStyle = {
     backgroundColor: backgroundColor,
   };
+  let random = Math.floor(Math.random() * 10 + 1);
+  // console.log(random);
+
   return (
     <article className={classes.article}>
       <Link
         href={`/boligdetails/${articleId}`}
-        key={`articleboligertilsalg-${index}`}
+        key={`articleboligertilsalg-${random}`}
       >
         <div className={classes.homeimageandheartContainer}>
           <Image
@@ -52,6 +55,7 @@ export default function Article({
             alt={alt}
             priority
           />
+          {/* if user is logged in. How to check? using current user api */}
           <button
             onClick={(e) => {
               if (e.target.closest("button")) {

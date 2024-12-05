@@ -15,3 +15,7 @@
   color: white;
   margin-bottom: 1rem;
 }
+
+.transparency {
+  opacity: 0.5;
+}

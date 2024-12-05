@@ -33,3 +33,6 @@
   flex-wrap: wrap;
   gap: 2rem;
 }
+.transparency {
+  opacity: 0.5;
+}

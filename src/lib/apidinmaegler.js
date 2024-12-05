@@ -99,3 +99,5 @@ export async function getHomesByTypeAndPrice(type_eq, price_gte, price_lte) {
     console.log(error);
   }
 }
+
+// Login

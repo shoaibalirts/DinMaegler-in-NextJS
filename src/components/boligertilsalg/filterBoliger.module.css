@@ -1,18 +1,25 @@
 .filterboligerSection {
   padding: 0 20%;
 }
-.heading{
-  margin-bottom: 1rem;
+.heading {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.headingFirstWord {
+  border-bottom: 5px black solid;
+  padding-bottom: 0.5rem;
 }
 .form {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 5rem;
 }
 .formElement {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .twowayslider {
   /* margin-top: 3rem; */
@@ -20,7 +27,7 @@
 
 .ejendomstype {
   border: 1px solid silver;
-  
+
   padding-left: 5px;
   padding-right: 5rem;
   padding-top: 10px;
