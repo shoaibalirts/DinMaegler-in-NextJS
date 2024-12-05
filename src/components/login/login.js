@@ -1,6 +1,27 @@
+"use client";
+import Link from "next/link";
 import Image from "next/image";
 import classes from "./login.module.css";
+import { useState } from "react";
 export default function Login() {
+  const [enteredValues, setEnteredValues] = useState({
+    identifier: "",
+    password: "",
+  });
+  function handleSubmission(e) {
+    e.preventDefault();
+    console.log(enteredValues);
+    setEnteredValues({
+      identifier: "",
+      password: "",
+    });
+  }
+  function handleInputChange(eventEmitterElement, value) {
+    setEnteredValues((prevValues) => ({
+      ...prevValues,
+      [eventEmitterElement]: value,
+    }));
+  }
   return (
     <>
       <section className="relative h-[100px] md:h-[120px] flex justify-center items-center">
@@ -19,7 +40,46 @@ export default function Login() {
       <hr />
       <section className={classes.form}>
         <h3>Log ind på din konto</h3>
-        <form></form>
+        <form onSubmit={handleSubmission}>
+          <p>
+            <label htmlFor="identifier">Email</label>
+            <input
+              id="identifier"
+              type="email"
+              name="identifier"
+              placeholder="Email"
+              onChange={(event) =>
+                handleInputChange("identifier", event.target.value)
+              }
+              value={enteredValues.identifier}
+            />
+          </p>
+          <p>
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={(event) =>
+                handleInputChange("password", event.target.value)
+              }
+              value={enteredValues.password}
+            />
+          </p>
+          <p>
+            <button>Log ind</button>
+          </p>
+        </form>
+      </section>
+      <section>
+        <button>Google</button>
+        <button>Facebook</button>
+        <button>Twitter</button>
+      </section>
+      <section>
+        <p>Har du ikke en konto?</p>
+        <Link href="/register">Opret bruger.</Link>
       </section>
     </>
   );
