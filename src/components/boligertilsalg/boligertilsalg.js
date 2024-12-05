@@ -31,8 +31,6 @@ export default function Boligertilsalg({ allHomesData }) {
         <Image
           width={800}
           height={533}
-          decoding="async"
-          data-nimg={1}
           className={`w-full h-full object-cover absolute inset-0 z-0 ${classes.transparency}`}
           // src="/images/nyhedsbrevBuildingBackground.jpg"
           src={allHomesData[5].images[3].url}
