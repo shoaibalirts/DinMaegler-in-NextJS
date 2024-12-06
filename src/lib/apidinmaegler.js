@@ -136,23 +136,36 @@ export async function getAuthorization(enteredValues) {
   }
 }
 
-// get current user
 export async function getCurrentUser() {
   const cookieStore = await cookies();
   const myToken = cookieStore.get("myToken");
-  console.log("myToken: ",myToken);
+
+  if (!myToken) {
+    console.log("No token found in cookies.");
+    return null;
+  }
 
   try {
     const response = await fetch("https://dinmaegler.onrender.com/users/me", {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${myToken}`,
+        Authorization: `Bearer ${myToken.value}`, 
       },
+      // credentials: "include", // Ensure cookies are sent with the request
     });
+
+    if (!response.ok) {
+      console.log(`Request failed with status: ${response.status}`);
+      const errorData = await response.json();
+      console.log("Error response data:", errorData);
+      return null;
+    }
+
     const data = await response.json();
-    console.log("data: ", data);
+    console.log("User data: ", data);
     return data;
   } catch (error) {
-    console.log(error);
+    console.log("Error occurred while fetching the current user:", error);
+    return null; // Gracefully handle fetch failure
   }
 }
