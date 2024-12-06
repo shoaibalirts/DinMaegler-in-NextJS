@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import classes from "./login.module.css";
 import { useState, useEffect } from "react";
-import { getAuthorization } from "@/lib/apidinmaegler";
+import { getAuthorization, getCurrentUser } from "@/lib/apidinmaegler";
 export default function Login() {
   const [enteredValues, setEnteredValues] = useState({
     identifier: "",
@@ -19,6 +19,13 @@ export default function Login() {
     });
     const data = await getAuthorization(enteredValues);
     console.log(data);
+    const currentUser = await getCurrentUser();
+    console.log("current user data: ", currentUser);
+  }
+  async function handleCurrentUser(event) {
+    event.preventDefault();
+    const currentUser = await getCurrentUser();
+    console.log("current user data: ", currentUser);
   }
 
   function handleInputChange(eventEmitterElement, value) {
@@ -86,6 +93,7 @@ export default function Login() {
         <p>Har du ikke en konto?</p>
         <Link href="/register">Opret bruger.</Link>
       </section>
+      <button onClick={handleCurrentUser}>Current User</button>
     </>
   );
 }

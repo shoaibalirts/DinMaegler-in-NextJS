@@ -123,7 +123,7 @@ export async function getAuthorization(enteredValues) {
       return "unsuccessful";
     } else {
       const cookieStore = await cookies();
-      cookieStore.set("authorization Token", data.jwt);
+      cookieStore.set("myToken", data.jwt);
       cookieStore.set("user id", data.user.id);
 
       console.log("jwt", data.jwt);
@@ -131,6 +131,27 @@ export async function getAuthorization(enteredValues) {
 
       return "success";
     }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// get current user
+export async function getCurrentUser() {
+  const cookieStore = await cookies();
+  const myToken = cookieStore.get("myToken");
+  console.log("myToken: ",myToken);
+
+  try {
+    const response = await fetch("https://dinmaegler.onrender.com/users/me", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${myToken}`,
+      },
+    });
+    const data = await response.json();
+    console.log("data: ", data);
+    return data;
   } catch (error) {
     console.log(error);
   }
