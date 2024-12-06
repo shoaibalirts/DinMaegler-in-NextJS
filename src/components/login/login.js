@@ -2,12 +2,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import classes from "./login.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getAuthorization } from "@/lib/apidinmaegler";
 export default function Login() {
   const [enteredValues, setEnteredValues] = useState({
     identifier: "",
     password: "",
   });
+
   function handleSubmission(e) {
     e.preventDefault();
     console.log(enteredValues);
@@ -15,7 +17,10 @@ export default function Login() {
       identifier: "",
       password: "",
     });
+    const data = getAuthorization(enteredValues);
+    console.log(data);
   }
+
   function handleInputChange(eventEmitterElement, value) {
     setEnteredValues((prevValues) => ({
       ...prevValues,

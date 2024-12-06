@@ -1,5 +1,7 @@
 "use server";
 
+import { cookies } from "next/headers";
+
 // get all homes
 export async function getAllHomes() {
   try {
@@ -101,3 +103,35 @@ export async function getHomesByTypeAndPrice(type_eq, price_gte, price_lte) {
 }
 
 // Login
+export async function getAuthorization(enteredValues) {
+  try {
+    const response = await fetch(`https://dinmaegler.onrender.com/auth/local`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        identifier: enteredValues.identifier,
+        password: enteredValues.password,
+      }),
+    });
+    console.log(enteredValues);
+
+    const data = await response.json();
+    if (!response.ok) {
+      console.log("here is an error page...");
+      return "unsuccessful";
+    } else {
+      const cookieStore = await cookies();
+      cookieStore.set("authorization Token", data.jwt);
+      cookieStore.set("user id", data.user.id);
+
+      console.log("jwt", data.jwt);
+      console.log("user id", data.user.id);
+
+      return "success";
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
