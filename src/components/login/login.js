@@ -10,14 +10,14 @@ export default function Login() {
     password: "",
   });
 
-  function handleSubmission(e) {
+  async function handleSubmission(e) {
     e.preventDefault();
     console.log(enteredValues);
     setEnteredValues({
       identifier: "",
       password: "",
     });
-    const data = getAuthorization(enteredValues);
+    const data = await getAuthorization(enteredValues);
     console.log(data);
   }
 
