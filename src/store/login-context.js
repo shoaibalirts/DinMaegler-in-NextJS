@@ -1,8 +1,8 @@
 // app/context/login-context.js
-'use client';
+"use client";
 
-import { createContext, useContext, useState, useEffect } from 'react';
-import { parseCookies, setCookie, destroyCookie } from 'nookies'; // Use nookies for cookies handling
+import { createContext, useContext, useState, useEffect } from "react";
+import { parseCookies, setCookie, destroyCookie } from "nookies"; // Use nookies for cookies handling
 
 const LoginContext = createContext();
 
@@ -15,17 +15,19 @@ export function LoginProvider({ children }) {
     const cookies = parseCookies();
     if (cookies.myToken) {
       setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
     }
   }, []); // Empty dependency array ensures this runs once on mount
 
   const login = (token) => {
     setIsLoggedIn(true);
-    setCookie(null, 'myToken', token, { path: '/' }); // Store the token in cookies
+    setCookie(null, "myToken", token, { path: "/" }); // Store the token in cookies
   };
 
   const logout = () => {
     setIsLoggedIn(false);
-    destroyCookie(null, 'myToken', { path: '/' }); // Remove the token from cookies
+    destroyCookie(null, "myToken", { path: "/" }); // Remove the token from cookies
   };
 
   return (
@@ -36,9 +38,6 @@ export function LoginProvider({ children }) {
 }
 
 export const useLogin = () => useContext(LoginContext);
-
-
-
 
 // in this component, i am managing react context value for the login
 // step 1: create a context value
@@ -55,4 +54,3 @@ export const useLogin = () => useContext(LoginContext);
 //import { LoginContext } from "@/store/login-context";
 // const contaxtValue = useContext(LoginContext);
 //---------------------------------------------------------------------//
-

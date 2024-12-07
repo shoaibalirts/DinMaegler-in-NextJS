@@ -26,6 +26,8 @@ export default function Login() {
     const data = await getAuthorization(enteredValues);
     if(data.myToken){
       login(data.myToken);
+    } else {
+      console.log(data);
     }
     console.log(data);
     const currentUser = await getCurrentUser();
