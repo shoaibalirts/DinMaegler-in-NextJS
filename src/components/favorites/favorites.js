@@ -1,6 +1,10 @@
 import Image from "next/image";
 import classes from "./favorites.module.css";
+// import { useLogin } from "@/store/login-context";
+
 export default function Favorites() {
+  // const { isLoggedIn, logout } = useLogin();
+
   return (
     <>
       <section className="relative h-[100px] md:h-[120px] flex justify-center items-center">

@@ -5,16 +5,16 @@ import Link from "next/link";
 import PhoneIcon from "../phoneicon";
 import PaperPlaneIcon from "../paperplaneicon";
 import PersonIcon from "../personicon";
-import { useState } from "react";
-import { getCurrentUser } from "@/lib/apidinmaegler";
-export default function Header({children }) {
-  // let confirmLogin=false;
-  // const [isLoggedin, setIsLoggedin]=useState(false)
-  
-  // async function currentUser() {
-  //   const currentUser = await getCurrentUser();
-  //   console.log("current user data: ", currentUser);
-  // }
+import { useLogin } from "@/store/login-context";
+
+// consuming context value here because we have to render conditionally based on the login state true or false
+// import { useContext } from "react";
+// import { LoginContext } from "@/store/login-context";
+
+export default function Header({ children }) {
+  // let ctxValue = useContext(LoginContext);
+  // console.log("ctx value: ",ctxValue);
+  const { isLoggedIn, logout } = useLogin();
   return (
     <header className={classes.header}>
       <section className={classes.layer1}>
@@ -28,11 +28,16 @@ export default function Header({children }) {
             <p>+45 7070 4000</p>
           </li>
         </ul>
-        <Link href="/login" className={classes.logincontainer}>
-          <PersonIcon />
-          <p>Log ind</p>
-          {/* {loggedIn && <p>Log out</p>} */}
-        </Link>
+        <div className={classes.logincontainer}>
+          {isLoggedIn ? (
+            <button onClick={logout}>Log out</button>
+          ) : (
+            <Link href="/login">
+              <PersonIcon />
+              <p>Log ind</p>
+            </Link>
+          )}
+        </div>
       </section>
       <section className={classes.navigation}>
         <nav className={classes.navbar}>

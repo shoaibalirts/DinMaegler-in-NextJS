@@ -19,7 +19,6 @@ import NyhedsBrevSection from "@/components/nyhedsbrevSection/nyhedsbrevSection"
 import AgentsSection from "@/components/agentsSection/agentsSection";
 import OpdateringSection from "@/components/opdateringSection/opdateringSection";
 export default async function Home() {
- 
   const allHomesData = await getAllHomes();
   const allAgents = await getAllAgents();
 
@@ -42,8 +41,8 @@ export default async function Home() {
   const agentsHeading = "Mød vores engagerede medarbejdere";
   const agentsText =
     "Din Mægler er garant for altid veluddannet assistance i dit boligsalg. Kontakt en af vores medarbejdere.";
-  let random = Math.floor((Math.random()*100)+1);
-    return (
+  let random = Math.floor(Math.random() * 100 + 1);
+  return (
     <>
       <Header></Header>
       <main>

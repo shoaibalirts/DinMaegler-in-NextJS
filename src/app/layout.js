@@ -1,3 +1,4 @@
+import { LoginProvider } from '@/store/login-context';
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -21,7 +22,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body><LoginProvider>{children}</LoginProvider></body>
     </html>
   );
 }

@@ -4,20 +4,29 @@ import Image from "next/image";
 import classes from "./login.module.css";
 import { useState } from "react";
 import { getAuthorization, getCurrentUser } from "@/lib/apidinmaegler";
+
+import { useLogin } from "@/store/login-context";
+
 export default function Login() {
   const [enteredValues, setEnteredValues] = useState({
     identifier: "",
     password: "",
   });
 
+  const {login} = useLogin();
+
   async function handleSubmission(e) {
     e.preventDefault();
     console.log(enteredValues);
+
     setEnteredValues({
       identifier: "",
       password: "",
     });
     const data = await getAuthorization(enteredValues);
+    if(data.myToken){
+      login(data.myToken);
+    }
     console.log(data);
     const currentUser = await getCurrentUser();
     console.log("current user data: ", currentUser);

@@ -2,6 +2,8 @@
 import Image from "next/image";
 import classes from "./article.module.css";
 import Link from "next/link";
+import { useLogin } from "@/store/login-context";
+
 export default function Article({
   articleId,
   index,
@@ -20,6 +22,8 @@ export default function Article({
   price,
   boligId,
 }) {
+  const { isLoggedIn, logout } = useLogin();
+
   // console.log(boligId);
   function handleFavorite(e) {
     console.log("clicked favorite");
@@ -56,24 +60,26 @@ export default function Article({
             priority
           />
           {/* if user is logged in. How to check? using current user api */}
-          <button
-            onClick={(e) => {
-              if (e.target.closest("button")) {
-                e.preventDefault();
-                handleFavorite();
-              }
-            }}
-            className={classes.btnPadding}
-          >
-            <Image
-              className={classes.heart}
-              src="/images/heart.svg"
-              width={20}
-              height={20}
-              alt={alt}
-              priority
-            />
-          </button>
+          {isLoggedIn && (
+            <button
+              onClick={(e) => {
+                if (e.target.closest("button")) {
+                  e.preventDefault();
+                  handleFavorite();
+                }
+              }}
+              className={classes.btnPadding}
+            >
+              <Image
+                className={classes.heart}
+                src="/images/heart.svg"
+                width={20}
+                height={20}
+                alt={alt}
+                priority
+              />
+            </button>
+          )}
         </div>
         <div className={classes.div2}>
           <h3 className={classes.address}>{address}</h3>
