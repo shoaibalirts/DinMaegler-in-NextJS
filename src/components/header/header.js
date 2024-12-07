@@ -1,13 +1,20 @@
+"use client";
 import Image from "next/image";
 import classes from "./header.module.css";
 import Link from "next/link";
 import PhoneIcon from "../phoneicon";
 import PaperPlaneIcon from "../paperplaneicon";
 import PersonIcon from "../personicon";
-export default function Header({ children }) {
-  function handlerLogin() {
-    console.log("clicked");
-  }
+import { useState } from "react";
+import { getCurrentUser } from "@/lib/apidinmaegler";
+export default function Header({children }) {
+  // let confirmLogin=false;
+  // const [isLoggedin, setIsLoggedin]=useState(false)
+  
+  // async function currentUser() {
+  //   const currentUser = await getCurrentUser();
+  //   console.log("current user data: ", currentUser);
+  // }
   return (
     <header className={classes.header}>
       <section className={classes.layer1}>
@@ -24,6 +31,7 @@ export default function Header({ children }) {
         <Link href="/login" className={classes.logincontainer}>
           <PersonIcon />
           <p>Log ind</p>
+          {/* {loggedIn && <p>Log out</p>} */}
         </Link>
       </section>
       <section className={classes.navigation}>

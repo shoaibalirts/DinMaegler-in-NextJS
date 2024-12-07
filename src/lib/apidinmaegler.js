@@ -2,6 +2,92 @@
 
 import { cookies } from "next/headers";
 
+// import { parseCookies } from "@/components/utils/cookies";
+// export const getServerSideProps = async (context) => {
+//   const cookies = parseCookies(context.req);
+//   const token = cookies.token;
+//   if(!token){
+//     return {
+//       redirect: {
+//         destination: '/login',
+//         permanent: false,
+//       },
+//     };
+//   }
+//   return {
+//     props: {
+//       loggedIn: true
+//     },
+//   };
+// }
+
+// Login
+export async function getAuthorization(enteredValues) {
+  try {
+    const response = await fetch(`https://dinmaegler.onrender.com/auth/local`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        identifier: enteredValues.identifier,
+        password: enteredValues.password,
+      }),
+    });
+    console.log(enteredValues);
+
+    const data = await response.json();
+    if (!response.ok) {
+      console.log("here is an error page...");
+      return "unsuccessful";
+    } else {
+      const cookieStore = await cookies();
+      cookieStore.set("myToken", data.jwt);
+      cookieStore.set("userId", data.user.id);
+
+      console.log("jwt", data.jwt);
+      console.log("user id", data.user.id);
+
+      return "success";
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getCurrentUser() {
+  const cookieStore = await cookies();
+  const myToken = cookieStore.get("myToken");
+
+  if (!myToken) {
+    console.log("No token found in cookies.");
+    return null;
+  }
+
+  try {
+    const response = await fetch("https://dinmaegler.onrender.com/users/me", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${myToken.value}`,
+      },
+    });
+
+    if (!response.ok) {
+      console.log(`Request failed with status: ${response.status}`);
+      const errorData = await response.json();
+      console.log("Error response data:", errorData);
+      return null;
+    }
+
+    const data = await response.json();
+    console.log("User data: ", data);
+    return data;
+  } catch (error) {
+    console.log("Error occurred while fetching the current user:", error);
+    return null; // Gracefully handle fetch failure
+  }
+}
+
 // get all homes
 export async function getAllHomes() {
   try {
@@ -99,73 +185,5 @@ export async function getHomesByTypeAndPrice(type_eq, price_gte, price_lte) {
     }
   } catch (error) {
     console.log(error);
-  }
-}
-
-// Login
-export async function getAuthorization(enteredValues) {
-  try {
-    const response = await fetch(`https://dinmaegler.onrender.com/auth/local`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        identifier: enteredValues.identifier,
-        password: enteredValues.password,
-      }),
-    });
-    console.log(enteredValues);
-
-    const data = await response.json();
-    if (!response.ok) {
-      console.log("here is an error page...");
-      return "unsuccessful";
-    } else {
-      const cookieStore = await cookies();
-      cookieStore.set("myToken", data.jwt);
-      cookieStore.set("user id", data.user.id);
-
-      console.log("jwt", data.jwt);
-      console.log("user id", data.user.id);
-
-      return "success";
-    }
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-export async function getCurrentUser() {
-  const cookieStore = await cookies();
-  const myToken = cookieStore.get("myToken");
-
-  if (!myToken) {
-    console.log("No token found in cookies.");
-    return null;
-  }
-
-  try {
-    const response = await fetch("https://dinmaegler.onrender.com/users/me", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${myToken.value}`, 
-      },
-      // credentials: "include", // Ensure cookies are sent with the request
-    });
-
-    if (!response.ok) {
-      console.log(`Request failed with status: ${response.status}`);
-      const errorData = await response.json();
-      console.log("Error response data:", errorData);
-      return null;
-    }
-
-    const data = await response.json();
-    console.log("User data: ", data);
-    return data;
-  } catch (error) {
-    console.log("Error occurred while fetching the current user:", error);
-    return null; // Gracefully handle fetch failure
   }
 }

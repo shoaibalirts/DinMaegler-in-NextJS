@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import classes from "./login.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { getAuthorization, getCurrentUser } from "@/lib/apidinmaegler";
 export default function Login() {
   const [enteredValues, setEnteredValues] = useState({
@@ -22,11 +22,11 @@ export default function Login() {
     const currentUser = await getCurrentUser();
     console.log("current user data: ", currentUser);
   }
-  async function handleCurrentUser(event) {
-    event.preventDefault();
-    const currentUser = await getCurrentUser();
-    console.log("current user data: ", currentUser);
-  }
+  // async function handleCurrentUser(event) {
+  //   event.preventDefault();
+  //   const currentUser = await getCurrentUser();
+  //   console.log("current user data: ", currentUser);
+  // }
 
   function handleInputChange(eventEmitterElement, value) {
     setEnteredValues((prevValues) => ({
@@ -93,7 +93,7 @@ export default function Login() {
         <p>Har du ikke en konto?</p>
         <Link href="/register">Opret bruger.</Link>
       </section>
-      <button onClick={handleCurrentUser}>Current User</button>
+      {/* <button onClick={handleCurrentUser}>Current User</button> */}
     </>
   );
 }

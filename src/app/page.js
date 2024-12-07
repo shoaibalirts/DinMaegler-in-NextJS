@@ -19,6 +19,7 @@ import NyhedsBrevSection from "@/components/nyhedsbrevSection/nyhedsbrevSection"
 import AgentsSection from "@/components/agentsSection/agentsSection";
 import OpdateringSection from "@/components/opdateringSection/opdateringSection";
 export default async function Home() {
+ 
   const allHomesData = await getAllHomes();
   const allAgents = await getAllAgents();
 
