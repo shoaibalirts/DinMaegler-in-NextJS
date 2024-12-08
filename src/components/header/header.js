@@ -15,6 +15,7 @@ export default function Header({ children }) {
   // let ctxValue = useContext(LoginContext);
   // console.log("ctx value: ",ctxValue);
   const { isLoggedIn, logout } = useLogin();
+  
   return (
     <header className={classes.header}>
       <section className={classes.layer1}>

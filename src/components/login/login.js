@@ -13,7 +13,7 @@ export default function Login() {
     password: "",
   });
 
-  const {login} = useLogin();
+  const { login } = useLogin();
 
   async function handleSubmission(e) {
     e.preventDefault();
@@ -24,8 +24,9 @@ export default function Login() {
       password: "",
     });
     const data = await getAuthorization(enteredValues);
-    if(data.myToken){
+    if (data.myToken) {
       login(data.myToken);
+      // window.location.reload();
     } else {
       console.log(data);
     }
