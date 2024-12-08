@@ -4,10 +4,11 @@ import Image from "next/image";
 import classes from "./login.module.css";
 import { useState } from "react";
 import { getAuthorization, getCurrentUser } from "@/lib/apidinmaegler";
-
+import { useRouter } from "next/navigation";
 import { useLogin } from "@/store/login-context";
 
 export default function Login() {
+  const router = useRouter();
   const [enteredValues, setEnteredValues] = useState({
     identifier: "",
     password: "",
@@ -18,7 +19,6 @@ export default function Login() {
   async function handleSubmission(e) {
     e.preventDefault();
     console.log(enteredValues);
-
     setEnteredValues({
       identifier: "",
       password: "",
@@ -26,9 +26,9 @@ export default function Login() {
     const data = await getAuthorization(enteredValues);
     if (data.myToken) {
       login(data.myToken);
-      // window.location.reload();
     } else {
       console.log(data);
+      window.location.reload();
     }
     console.log(data);
     const currentUser = await getCurrentUser();

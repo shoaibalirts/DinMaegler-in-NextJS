@@ -1,5 +1,6 @@
 // app/context/login-context.js
 "use client";
+import { useRouter } from "next/navigation";
 
 import { createContext, useContext, useState, useEffect } from "react";
 import { parseCookies, setCookie, destroyCookie } from "nookies"; // Use nookies for cookies handling
@@ -9,6 +10,7 @@ const LoginContext = createContext();
 // LoginProvider to manage login state
 export function LoginProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     // Check if 'myToken' exists in the cookies when the page is loaded
@@ -26,8 +28,12 @@ export function LoginProvider({ children }) {
   };
 
   const logout = () => {
-    setIsLoggedIn(false);
-    destroyCookie(null, "myToken", { path: "/" }); // Remove the token from cookies
+    let confirmLogout = confirm("Er du sikkert at logge ud?");
+    if (confirmLogout) {
+      setIsLoggedIn(false);
+      destroyCookie(null, "myToken", { path: "/" }); // Remove the token from cookies
+      router.push("/");
+    }
   };
 
   return (

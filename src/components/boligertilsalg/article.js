@@ -59,7 +59,6 @@ export default function Article({
             alt={alt}
             priority
           />
-          {/* if user is logged in. How to check? using current user api */}
           {isLoggedIn && (
             <button
               onClick={(e) => {

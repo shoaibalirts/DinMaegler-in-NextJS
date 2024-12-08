@@ -15,7 +15,7 @@ export default function Header({ children }) {
   // let ctxValue = useContext(LoginContext);
   // console.log("ctx value: ",ctxValue);
   const { isLoggedIn, logout } = useLogin();
-  
+
   return (
     <header className={classes.header}>
       <section className={classes.layer1}>
@@ -31,7 +31,8 @@ export default function Header({ children }) {
         </ul>
         <div className={classes.logincontainer}>
           {isLoggedIn ? (
-            <button onClick={logout}>Log out</button>
+            
+            <button onClick={logout}>Log ud</button>
           ) : (
             <Link href="/login">
               <PersonIcon />
