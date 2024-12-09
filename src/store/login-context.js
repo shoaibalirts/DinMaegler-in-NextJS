@@ -1,9 +1,8 @@
-// app/context/login-context.js
 "use client";
 import { useRouter } from "next/navigation";
 
 import { createContext, useContext, useState, useEffect } from "react";
-import { parseCookies, setCookie, destroyCookie } from "nookies"; // Use nookies for cookies handling
+import { parseCookies, setCookie, destroyCookie } from "nookies"; 
 
 const LoginContext = createContext();
 
@@ -20,11 +19,13 @@ export function LoginProvider({ children }) {
     } else {
       setIsLoggedIn(false);
     }
-  }, []); // Empty dependency array ensures this runs once on mount
+  }, []);
 
   const login = (token) => {
     setIsLoggedIn(true);
     setCookie(null, "myToken", token, { path: "/" }); // Store the token in cookies
+    router.push("/boligertilsalg");
+
   };
 
   const logout = () => {
@@ -32,7 +33,10 @@ export function LoginProvider({ children }) {
     if (confirmLogout) {
       setIsLoggedIn(false);
       destroyCookie(null, "myToken", { path: "/" }); // Remove the token from cookies
-      router.push("/");
+      destroyCookie(null, "userId", { path: "/" }); // Remove the token from cookies
+
+      router.push("/login");
+
     }
   };
 
@@ -45,7 +49,7 @@ export function LoginProvider({ children }) {
 
 export const useLogin = () => useContext(LoginContext);
 
-// in this component, i am managing react context value for the login
+// in this component, i am managing react context value for the login, logout
 // step 1: create a context value
 // import { createContext } from "react";
 // export const LoginContext = createContext({

@@ -26,6 +26,7 @@ export default function Login() {
     const data = await getAuthorization(enteredValues);
     if (data.myToken) {
       login(data.myToken);
+
     } else {
       console.log(data);
       window.location.reload();
