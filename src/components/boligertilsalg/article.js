@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useLogin } from "@/store/login-context";
 import { getFavorites, getCurrentUser } from "@/lib/apidinmaegler";
 import { useState } from "react";
+import HeartIcon from "./hearticon";
 
 export default function Article({
   articleId,
@@ -25,6 +26,10 @@ export default function Article({
   boligId,
 }) {
   const { isLoggedIn, logout } = useLogin();
+  const [toggleColor, setToggleColor] = useState(true);
+  let heartIconclasses = {
+    color: "white",
+  };
 
   // console.log(boligId);
   async function handleFavorite(homeId) {
@@ -34,7 +39,7 @@ export default function Article({
     // my homes object as response from the current user api endpoint
     const myHomesObject = await getCurrentUser();
     // object destructuring
-    const { id, homes } = { id: myHomesObject.id, homes: myHomesObject.homes };
+    const { homes } = { homes: myHomesObject.homes };
     // user id
     // console.log("User Id: ", id);
     // homes array
@@ -44,24 +49,18 @@ export default function Article({
     // console.log(existsSpecificHomeId);
 
     if (existsSpecificHomeId === -1) {
-      console
-        .log
-        // "does not exist this home id so adding it into to the homes array"
-        ();
+      // console.log("does not exist this home id so adding it into to the homes array");
 
       homes.push(homeId);
-      const myFavorites = await getFavorites(homes);
-      console.log(myFavorites);
+      await getFavorites(homes);
     } else {
-      console.log("Exist this home id so removing it from homes array");
+      // classname should be fillHeartColor
+      heartIconclasses = { color: "red" };
+      // console.log("Exist this home id so removing it from homes array");
       const filteredArray = homes.filter((id) => id !== homeId);
-      console.log("filtered Array: ", filteredArray);
-      const myFavorites1 = await getFavorites(filteredArray);
-      console.log("myFavorite homes from API:", myFavorites1);
+      // console.log("filtered Array: ", filteredArray);
+      await getFavorites(filteredArray);
     }
-    // hearticon state true/false
-    //to remove homeid from homes
-    // console.log("homes after updates", homes);
   }
   let backgroundColor = "green";
   if (energyLabel === "A") {
@@ -104,14 +103,17 @@ export default function Article({
               }}
               className={classes.btnPadding}
             >
-              <Image
+              {/* <Image
                 className={classes.heart}
                 src="/images/heart.svg"
                 width={20}
                 height={20}
                 alt={alt}
                 priority
-              />
+              /> */}
+              <div className={classes.heart}>
+                <HeartIcon />
+              </div>
             </button>
           )}
         </div>

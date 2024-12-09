@@ -29,6 +29,10 @@
   z-index: 2;
   width: 30px;
   height: 30px;
+  color: white;
+}
+.fillHeartColor {
+  color: red;
 }
 
 .div2 {
