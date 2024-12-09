@@ -30,15 +30,13 @@ export default function Login() {
       console.log(data);
       window.location.reload();
     }
-    console.log(data);
+  }
+
+  async function handleCurrentUser(event) {
+    event.preventDefault();
     const currentUser = await getCurrentUser();
     console.log("current user data: ", currentUser);
   }
-  // async function handleCurrentUser(event) {
-  //   event.preventDefault();
-  //   const currentUser = await getCurrentUser();
-  //   console.log("current user data: ", currentUser);
-  // }
 
   function handleInputChange(eventEmitterElement, value) {
     setEnteredValues((prevValues) => ({

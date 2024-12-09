@@ -2,25 +2,6 @@
 
 import { cookies } from "next/headers";
 
-// import { parseCookies } from "@/components/utils/cookies";
-// export const getServerSideProps = async (context) => {
-//   const cookies = parseCookies(context.req);
-//   const token = cookies.token;
-//   if(!token){
-//     return {
-//       redirect: {
-//         destination: '/login',
-//         permanent: false,
-//       },
-//     };
-//   }
-//   return {
-//     props: {
-//       loggedIn: true
-//     },
-//   };
-// }
-
 // Login
 export async function getAuthorization(enteredValues) {
   try {
@@ -185,5 +166,55 @@ export async function getHomesByTypeAndPrice(type_eq, price_gte, price_lte) {
     }
   } catch (error) {
     console.log(error);
+  }
+}
+
+export async function getFavorites(updatedHomes) {
+  const cookieStore = await cookies();
+  const myToken = cookieStore.get("myToken");
+  const userId = cookieStore.get("userId");
+  if (!myToken) {
+    console.log("No token found in cookies.");
+    return "not found token";
+  }
+  if (!userId) {
+    console.log("No userId in cookies");
+    return "not userId cookie found";
+  }
+
+  try {
+    const response = await fetch(
+      `https://dinmaegler.onrender.com/users/${userId.value}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${myToken.value}`,
+        },
+        body: JSON.stringify({
+          homes: updatedHomes,
+        }),
+      }
+    );
+    console.log(response);
+
+    if (!response.ok) {
+      console.log(`Request failed with status: ${response.status}`);
+      const errorData = await response.json();
+      console.log("Error response data:", errorData);
+      return "error response";
+    }
+    console.log(
+      JSON.stringify({
+        homes: updatedHomes,
+      })
+    );
+
+    const data = await response.json();
+    console.log("new array data: ", data);
+    return data;
+  } catch (error) {
+    console.log("Error occurred while fetching the current user:", error);
+    return "eror occurred";
   }
 }

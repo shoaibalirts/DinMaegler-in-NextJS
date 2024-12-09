@@ -3,6 +3,8 @@ import Image from "next/image";
 import classes from "./article.module.css";
 import Link from "next/link";
 import { useLogin } from "@/store/login-context";
+import { getFavorites, getCurrentUser } from "@/lib/apidinmaegler";
+import { useState } from "react";
 
 export default function Article({
   articleId,
@@ -25,8 +27,41 @@ export default function Article({
   const { isLoggedIn, logout } = useLogin();
 
   // console.log(boligId);
-  function handleFavorite(e) {
+  async function handleFavorite(homeId) {
+    console.log(homeId);
+
     console.log("clicked favorite");
+    // my homes object as response from the current user api endpoint
+    const myHomesObject = await getCurrentUser();
+    // object destructuring
+    const { id, homes } = { id: myHomesObject.id, homes: myHomesObject.homes };
+    // user id
+    // console.log("User Id: ", id);
+    // homes array
+    // console.log("Homes Array for this user id from API: ", homes);
+
+    const existsSpecificHomeId = homes.indexOf(homeId);
+    // console.log(existsSpecificHomeId);
+
+    if (existsSpecificHomeId === -1) {
+      console
+        .log
+        // "does not exist this home id so adding it into to the homes array"
+        ();
+
+      homes.push(homeId);
+      const myFavorites = await getFavorites(homes);
+      console.log(myFavorites);
+    } else {
+      console.log("Exist this home id so removing it from homes array");
+      const filteredArray = homes.filter((id) => id !== homeId);
+      console.log("filtered Array: ", filteredArray);
+      const myFavorites1 = await getFavorites(filteredArray);
+      console.log("myFavorite homes from API:", myFavorites1);
+    }
+    // hearticon state true/false
+    //to remove homeid from homes
+    // console.log("homes after updates", homes);
   }
   let backgroundColor = "green";
   if (energyLabel === "A") {
@@ -64,7 +99,7 @@ export default function Article({
               onClick={(e) => {
                 if (e.target.closest("button")) {
                   e.preventDefault();
-                  handleFavorite();
+                  handleFavorite(boligId);
                 }
               }}
               className={classes.btnPadding}
