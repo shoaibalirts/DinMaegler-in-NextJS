@@ -6,6 +6,7 @@ import { useLogin } from "@/store/login-context";
 import { getFavorites, getCurrentUser } from "@/lib/apidinmaegler";
 import { useState } from "react";
 import HeartIcon from "./hearticon";
+import { HandleMyFavorite } from "../utils/handlefavorite";
 
 export default function Article({
   articleId,
@@ -27,41 +28,32 @@ export default function Article({
 }) {
   const { isLoggedIn, logout } = useLogin();
   const [toggleColor, setToggleColor] = useState(true);
-  let heartIconclasses = {
-    color: "white",
-  };
+  // let heartIconclasses = {
+  //   color: "white",
+  // };
 
   // console.log(boligId);
+  async function handleFavorite(boligId) {
+    await HandleMyFavorite(boligId);
+  }
+  /*
   async function handleFavorite(homeId) {
-    console.log(homeId);
 
-    console.log("clicked favorite");
-    // my homes object as response from the current user api endpoint
     const myHomesObject = await getCurrentUser();
-    // object destructuring
     const { homes } = { homes: myHomesObject.homes };
-    // user id
-    // console.log("User Id: ", id);
-    // homes array
-    // console.log("Homes Array for this user id from API: ", homes);
-
     const existsSpecificHomeId = homes.indexOf(homeId);
-    // console.log(existsSpecificHomeId);
 
     if (existsSpecificHomeId === -1) {
-      // console.log("does not exist this home id so adding it into to the homes array");
 
       homes.push(homeId);
       await getFavorites(homes);
     } else {
-      // classname should be fillHeartColor
       heartIconclasses = { color: "red" };
-      // console.log("Exist this home id so removing it from homes array");
       const filteredArray = homes.filter((id) => id !== homeId);
-      // console.log("filtered Array: ", filteredArray);
       await getFavorites(filteredArray);
     }
   }
+  */
   let backgroundColor = "green";
   if (energyLabel === "A") {
     backgroundColor = "red";

@@ -1,15 +1,21 @@
 "use client";
 import Image from "next/image";
 import classes from "./favorites.module.css";
-import { getCurrentUser, getHomeDetail } from "@/lib/apidinmaegler";
-import { useEffect, useState } from "react";
+import {
+  getCurrentUser,
+  getHomeDetail,
+  getFavorites,
+} from "@/lib/apidinmaegler";
+import { useEffect, useRef, useState } from "react";
+import { HandleMyFavorite } from "../utils/handlefavorite";
+import Link from "next/link";
 
 export default function Favorites() {
   const [userFavorites, setUserFavorites] = useState(null);
   const [changeUserFavorites, setChangeUserFavorites] = useState();
+  const referenceTilDenneBolig = useRef(null);
   useEffect(() => {
     async function getAllMyFavorites() {
-      let x;
       const homesIdsArray = await getCurrentUser();
       console.log("homesIdsArray: ", homesIdsArray);
       const homesData = homesIdsArray.homes.map((homeId) =>
@@ -25,41 +31,18 @@ export default function Favorites() {
     // console.log("Current User Data: ", userData);
   }, []);
 
-  let random = Math.floor(Math.random() * 1000 + 1);
-  function handleChangeFavorite(boligId) {
-    // step-1: to get all the favorites homes
+  let randomFunc = () => Math.floor(Math.random() * 1000 + 1);
+  async function handleChangeFavorite(boligId) {
+    await HandleMyFavorite(boligId);
+  }
 
-    // step-2: using filter remove one of the item
-    // step-3: new filtered array should be PUT (edit to api)
-    // step-4: update UI using the below updating function
-    setChangeUserFavorites();
+  function handleUpdateUI() {
+    console.log(referenceTilDenneBolig.current);
+
+    referenceTilDenneBolig.current.remove();
   }
   return (
     <>
-      <section className={classes.search}></section>
-      <section className={classes.favoritesArticles}>
-        {userFavorites !== null
-          ? userFavorites.map((home) => (
-              <article key={`favorites-${random}`}>
-                <Image
-                  src={home.images[0].url}
-                  width={300}
-                  height={300}
-                  alt={home.images[0].name}
-                  priority
-                />
-
-                <p>{home.adress1}</p>
-                <div>
-                  <p>{home.postalcode}</p>
-                  <p>{home.city}</p>
-                </div>
-                <button onChange={() => handleChangeFavorite(home.id)}></button>
-              </article>
-            ))
-          : ""}
-        ;
-      </section>
       <section className="relative h-[100px] md:h-[120px] flex justify-center items-center">
         <Image
           width={800}
@@ -75,6 +58,46 @@ export default function Favorites() {
         <h2 className="relative text-white font-semibold text-3xl sm:text-5xl z-10">
           Mine favorit boliger
         </h2>
+      </section>
+      <section className={classes.search}></section>
+      <section className={classes.favoritesArticles}>
+        {userFavorites !== null ? (
+          userFavorites.map((home) => (
+            <div>
+              <Link href={`boligdetails/${home.id}`}>
+                <article
+                  key={`favorites-${randomFunc()}`}
+                  ref={referenceTilDenneBolig}
+                >
+                  <Image
+                    src={home.images[0].url}
+                    width={300}
+                    height={300}
+                    alt={home.images[0].name}
+                    priority
+                  />
+
+                  <p>{home.adress1}</p>
+                  <div>
+                    <p>{home.postalcode}</p>
+                    <p>{home.city}</p>
+                  </div>
+                </article>
+              </Link>
+
+              <button
+                onClick={() => {
+                  handleChangeFavorite(home.id);
+                  handleUpdateUI();
+                }}
+              >
+                Fjern denne bolig
+              </button>
+            </div>
+          ))
+        ) : (
+          <p>Loading Your Favourite Homes...</p>
+        )}
       </section>
     </>
   );
