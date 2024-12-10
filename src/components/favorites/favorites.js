@@ -1,34 +1,63 @@
-'use client';
+"use client";
 import Image from "next/image";
 import classes from "./favorites.module.css";
 import { getCurrentUser, getHomeDetail } from "@/lib/apidinmaegler";
-// import { useLogin } from "@/store/login-context";
+import { useEffect, useState } from "react";
 
-export default async function Favorites() {
-  // const { isLoggedIn, logout } = useLogin();
+export default function Favorites() {
+  const [userFavorites, setUserFavorites] = useState(null);
+  const [changeUserFavorites, setChangeUserFavorites] = useState();
+  useEffect(() => {
+    async function getAllMyFavorites() {
+      let x;
+      const homesIdsArray = await getCurrentUser();
+      console.log("homesIdsArray: ", homesIdsArray);
+      const homesData = homesIdsArray.homes.map((homeId) =>
+        getHomeDetail(homeId)
+      );
+      console.log(homesData); // [promise, promise, promise]
+      const homesDataArray = await Promise.all(homesData);
+      console.log("homesdataArray: ", homesDataArray);
 
-  const currentUserData = await getCurrentUser();
-  console.log("Current User Data: ", currentUserData);
-  const homes = currentUserData.homes; // it contains all homes id
-  const homesData = homes.map((homeId) => getHomeDetail(homeId));
-  const homesDataArray = await Promise.all(homesData);
-  console.log(homesDataArray);
+      setUserFavorites(homesDataArray);
+    }
+    getAllMyFavorites();
+    // console.log("Current User Data: ", userData);
+  }, []);
+
   let random = Math.floor(Math.random() * 1000 + 1);
+  function handleChangeFavorite(boligId) {
+    // step-1: to get all the favorites homes
 
+    // step-2: using filter remove one of the item
+    // step-3: new filtered array should be PUT (edit to api)
+    // step-4: update UI using the below updating function
+    setChangeUserFavorites();
+  }
   return (
     <>
       <section className={classes.search}></section>
       <section className={classes.favoritesArticles}>
-        {/* {homesDataArray.map((home) => (
-          <article key={`favorites-${random}`}>
-            <Image src={home.images[0].url} width={300} height={300} priority />
-            <p>{home.adress1}</p>
-            <div>
-              <p>{home.postalcode}</p>
-              <p>{home.city}</p>
-            </div>
-          </article>
-        ))} */}
+        {userFavorites !== null
+          ? userFavorites.map((home) => (
+              <article key={`favorites-${random}`}>
+                <Image
+                  src={home.images[0].url}
+                  width={300}
+                  height={300}
+                  alt={home.images[0].name}
+                  priority
+                />
+
+                <p>{home.adress1}</p>
+                <div>
+                  <p>{home.postalcode}</p>
+                  <p>{home.city}</p>
+                </div>
+                <button onChange={() => handleChangeFavorite(home.id)}></button>
+              </article>
+            ))
+          : ""}
         ;
       </section>
       <section className="relative h-[100px] md:h-[120px] flex justify-center items-center">

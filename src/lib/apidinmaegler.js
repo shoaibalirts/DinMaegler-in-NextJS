@@ -40,7 +40,7 @@ export async function getCurrentUser() {
   const cookieStore = await cookies();
   const myToken = cookieStore.get("myToken");
   const userId = cookieStore.get("userId");
-  
+
   if (!myToken) {
     console.log("No token found in cookies.");
     return null;
