@@ -25,7 +25,7 @@ export default function FilterBoliger({ onFilterChange }) {
       if (!response.ok) {
         // console.log("we have to render page otherwise render error page");
       }
-      console.log(response);
+      // console.log(response);
       onFilterChange(response);
     }
     fetchEjendoms();

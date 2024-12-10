@@ -1,0 +1,26 @@
+.gallery {
+  width: 100%;
+  height: 400px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+  /* padding: calc(5rem + 2vh) 1rem; */
+}
+.leftandrightarrows {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.leftarrow {
+  /* position: absolute; */
+  /* top: 50;
+  left: 10%; */
+  background-color: white;
+}
+.rightarrow {
+  /* position: absolute; */
+  /* top: 50%;
+  left: 30%; */
+  background-color: white;
+}

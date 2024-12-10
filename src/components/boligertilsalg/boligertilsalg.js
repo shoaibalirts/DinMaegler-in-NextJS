@@ -12,7 +12,7 @@ export default function Boligertilsalg({ allHomesData }) {
   }, [allHomesData]);
 
   function filterHomes(receivedDataFromFilteredBoliger) {
-    console.log(receivedDataFromFilteredBoliger);
+    // console.log(receivedDataFromFilteredBoliger);
     setFilteredHomesData(receivedDataFromFilteredBoliger);
   }
 
