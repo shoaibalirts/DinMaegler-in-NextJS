@@ -1,4 +1,4 @@
-.gallery {
+.hero {
   width: 100%;
   height: 400px;
   background-repeat: no-repeat;
@@ -7,20 +7,61 @@
   text-align: center;
   /* padding: calc(5rem + 2vh) 1rem; */
 }
+.floorplan {
+  padding: 2rem 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  position: absolute;
+  top: 5rem;
+  left: 10rem;
+}
+.overlayimage {
+  width: 70%;
+  height: auto;
+}
 .leftandrightarrows {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.leftarrow {
-  /* position: absolute; */
-  /* top: 50;
-  left: 10%; */
-  background-color: white;
+
+
+.overlaySection {
+  margin: 2rem 20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.rightarrow {
-  /* position: absolute; */
-  /* top: 50%;
-  left: 30%; */
-  background-color: white;
+.gallery,
+.floor,
+.map,
+.favorite {
+  width: 30px;
+  height: 30px;
+  &:hover {
+    opacity: 0.9;
+  }
+}
+.galleryfloormapfavorite {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.postalcodecity {
+  display: flex;
+  gap: 5px;
+}
+.price {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+.hr {
+  margin: 1rem 20%;
+  margin-bottom: 110px;
+  background-color: #d3dee8;
+  padding: 1px;
 }
