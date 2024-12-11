@@ -11,6 +11,9 @@
 .closemodal {
   background-color: red;
   padding: 1rem;
+  &:hover {
+    opacity: 0.8;
+  }
 }
 .hero {
   width: 100%;
