@@ -1,4 +1,9 @@
+import Image from "next/image";
+import Link from "next/link";
 import classes from "./boligfacts.module.css";
+import { FaPhoneAlt } from "react-icons/fa";
+import { SiMinutemailer } from "react-icons/si";
+
 export default function BoligFacts({ boligData }) {
   return (
     <>
@@ -62,13 +67,41 @@ export default function BoligFacts({ boligData }) {
           </li>
         </ul>
       </section>
-      <section>
-        <article>
-          <h3>Beskrivelse</h3>
-          <p>{boligData.description}</p>
-        </article>
-        <article></article>
-      </section>
+      <Link href={`/maegler/${boligData.agent.id}`}>
+        <section className={classes.boligdescriptionandansvarligeagent}>
+          <article className={classes.boligdescription}>
+            <h3 className={classes.heading}>Beskrivelse</h3>
+            <p>{boligData.description}</p>
+          </article>
+          <article className={classes.ansvarligeagent}>
+            <h3 className={classes.heading}>Ansvalig mægler </h3>
+            <section className={classes.agentinfo}>
+              <div className={classes.agentimagecontainer}>
+                <Image
+                  src={boligData.agent.image.url}
+                  width={500}
+                  height={400}
+                  priority
+                  alt={boligData.agent.image.name}
+                />
+              </div>
+              <div>
+                <h4>{boligData.agent.name}</h4>
+                <p>{boligData.agent.title}</p>
+                <hr className={classes.hr} />
+                <div className={classes.phoneandemail}>
+                  <FaPhoneAlt />
+                  <p>{boligData.agent.phone}</p>
+                </div>
+                <div className={classes.phoneandemail}>
+                  <SiMinutemailer />
+                  <p>{boligData.agent.email}</p>
+                </div>
+              </div>
+            </section>
+          </article>
+        </section>
+      </Link>
     </>
   );
 }
