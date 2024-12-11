@@ -3,17 +3,19 @@ import { HandleMyFavorite } from "../utils/handlefavorite";
 import Image from "next/image";
 import { useState } from "react";
 
-export default function Navigation({ isModal, isGallery, isFloor, isMap }) {
+export default function Navigation({
+  isModal,
+  isGallery,
+  isFloor,
+  isMap,
+  isFavorite,
+  boligData,
+}) {
   function showModal(e) {
     console.log(e);
     isModal(true);
   }
 
-  let showFavorite = (e) => {
-    console.log(e);
-    HandleMyFavorite(boligData.id);
-    isModal(false);
-  };
   return (
     <ul className={classes.galleryfloormapfavorite}>
       <li>
@@ -22,6 +24,7 @@ export default function Navigation({ isModal, isGallery, isFloor, isMap }) {
             isGallery(true);
             isFloor(false);
             isMap(false);
+            isFavorite(false);
             showModal(e);
           }}
         >
@@ -43,6 +46,7 @@ export default function Navigation({ isModal, isGallery, isFloor, isMap }) {
             isFloor(true);
             isGallery(false);
             isMap(false);
+            isFavorite(false);
             showModal(e);
           }}
         >
@@ -63,6 +67,7 @@ export default function Navigation({ isModal, isGallery, isFloor, isMap }) {
             isMap(true);
             isGallery(false);
             isFloor(false);
+            isFavorite(false);
             showModal(e);
           }}
         >
@@ -80,7 +85,10 @@ export default function Navigation({ isModal, isGallery, isFloor, isMap }) {
       <li>
         <button
           onClick={(e) => {
-            showFavorite(e);
+            isFavorite(true);
+            isMap(false);
+            isGallery(false);
+            isFloor(false);
             showModal(e);
           }}
         >
