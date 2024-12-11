@@ -1,0 +1,12 @@
+.list {
+  margin-bottom: 1rem;
+  padding: 0 20%;
+  display: flex;
+  justify-content: space-between;
+}
+.listitem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+}

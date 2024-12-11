@@ -30,8 +30,8 @@ export default function BoligDetails({ boligData }) {
     setMap(receivedBoolean);
   }
   function isFavorite(receivedBoolean) {
-    setFavorite(receivedBoolean);
     HandleMyFavorite(boligData.id);
+    setFavorite(receivedBoolean);
   }
   function handleCloseModal() {
     console.log("clicked");
@@ -149,6 +149,8 @@ export default function BoligDetails({ boligData }) {
       ) : (
         <p>Loading data...</p>
       )}
+
+      
     </>
   );
 }
