@@ -1,4 +1,6 @@
 "use client";
+import { IoMdClose } from "react-icons/io";
+
 import Image from "next/image";
 import classes from "./boligdetails.module.css";
 import LeftArrow from "../leftarrow";
@@ -7,6 +9,10 @@ import { useState } from "react";
 import { HandleMyFavorite } from "../utils/handlefavorite";
 export default function BoligDetails({ boligData }) {
   const [isModal, setIsModal] = useState(false);
+  function handleCloseModal() {
+    console.log("clicked");
+    setIsModal(false);
+  }
   function showModal(e) {
     console.log(e);
     setIsModal(true);
@@ -37,97 +43,103 @@ export default function BoligDetails({ boligData }) {
   return (
     <>
       {boligData !== undefined ? (
-        <section
-          className={classes.hero}
-          style={{
-            backgroundImage: `url(${boligData.images[3].url})`,
-          }}
-        ></section>
+        <section className={classes.parent}>
+          <div
+            className={classes.hero}
+            style={{
+              backgroundImage: `url(${boligData.images[3].url})`,
+            }}
+          ></div>
+          <section className={classes.navigation}>
+            <div className={classes.addresscontainer}>
+              <p className={classes.address}>{boligData.adress1}</p>
+              <div className={classes.postalcodecity}>
+                <p className={classes.postalcode}>{boligData.postalcode}</p>
+                <p className={classes.city}>{boligData.city}</p>
+              </div>
+            </div>
+            <ul className={classes.galleryfloormapfavorite}>
+              <li>
+                <button onClick={showModal}>
+                  <Image
+                    className={classes.gallery}
+                    src="/images/gallery.svg"
+                    width={15}
+                    height={15}
+                    layout="fixed"
+                    alt="gallery icon"
+                    priority
+                    value="gallery"
+                  />
+                </button>
+              </li>
+              <li>
+                <button onClick={showFloorPlan}>
+                  <Image
+                    className={classes.floor}
+                    src="/images/floor.svg"
+                    width={15}
+                    height={15}
+                    layout="fixed"
+                    alt="floor icon"
+                    priority
+                  />
+                </button>
+              </li>
+              <li>
+                <button onClick={showModal}>
+                  <Image
+                    className={classes.map}
+                    src="/images/map.svg"
+                    width={15}
+                    height={15}
+                    layout="fixed"
+                    alt="map icon"
+                    priority
+                  />
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={(e) => {
+                    showFavorite(e);
+                    showModal(e);
+                  }}
+                >
+                  <Image
+                    className={classes.favorite}
+                    src="/images/favorite.svg"
+                    width={15}
+                    height={15}
+                    layout="fixed"
+                    alt="favorite icon"
+                    priority
+                  />
+                </button>
+              </li>
+            </ul>
+            <p className={classes.price}>Kr. {boligData.price}</p>
+          </section>
+          <hr className={classes.hr} />
+          {isModal && (
+            <section className={classes.modal}>
+              <button onClick={handleCloseModal} className={classes.closemodal}>
+                <IoMdClose />
+              </button>
+              <Image
+                className={classes.overlayimage}
+                src="/images/floorplan.jpg"
+                width={500}
+                height={500}
+                priority
+                alt="floor plan image"
+              />
+            </section>
+          )}
+        </section>
       ) : (
         <p>Loading data...</p>
       )}
-
-      <section className={classes.overlaySection}>
-        <div className={classes.addresscontainer}>
-          <p className={classes.address}>{boligData.adress1}</p>
-          <div className={classes.postalcodecity}>
-            <p className={classes.postalcode}>{boligData.postalcode}</p>
-            <p className={classes.city}>{boligData.city}</p>
-          </div>
-        </div>
-        <ul className={classes.galleryfloormapfavorite}>
-          <li>
-            <button onClick={showModal}>
-              <Image
-                className={classes.gallery}
-                src="/images/gallery.svg"
-                width={15}
-                height={15}
-                layout="fixed"
-                alt="gallery icon"
-                priority
-                value="gallery"
-              />
-            </button>
-          </li>
-          <li>
-            <button onClick={showFloorPlan}>
-              <Image
-                className={classes.floor}
-                src="/images/floor.svg"
-                width={15}
-                height={15}
-                layout="fixed"
-                alt="floor icon"
-                priority
-              />
-            </button>
-          </li>
-          <li>
-            <button onClick={showModal}>
-              <Image
-                className={classes.map}
-                src="/images/map.svg"
-                width={15}
-                height={15}
-                layout="fixed"
-                alt="map icon"
-                priority
-              />
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={(e) => {
-                showFavorite(e);
-                showModal(e);
-              }}
-            >
-              <Image
-                className={classes.favorite}
-                src="/images/favorite.svg"
-                width={15}
-                height={15}
-                layout="fixed"
-                alt="favorite icon"
-                priority
-              />
-            </button>
-          </li>
-        </ul>
-        <p className={classes.price}>Kr. {boligData.price}</p>
-      </section>
-      <hr className={classes.hr} />
-      <section className={classes.floorplan}>
-        <Image
-          className={classes.overlayimage}
-          src="/images/floorplan.jpg"
-          width={500}
-          height={500}
-          priority
-          alt="floor plan image"
-        />
-      </section>
     </>
   );
 }

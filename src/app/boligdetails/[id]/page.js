@@ -13,13 +13,6 @@ export default async function BoligDetailsPage({ params }) {
       <Header></Header>
       <main>
         <BoligDetails boligData={boligDetailData} />
-        {/* <GalleryFloorMap
-          heroImage={boligDetailData.images[0].url}
-          address={boligDetailData.adress1}
-          postalcode={boligDetailData.postalcode}
-          city={boligDetailData.city}
-          price={boligDetailData.price}
-        /> */}
 
         <section className={classes.list}></section>
         <section className={classes.beskrivelse}></section>
