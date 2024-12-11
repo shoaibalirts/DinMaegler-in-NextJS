@@ -12,7 +12,7 @@ import Link from "next/link";
 
 export default function Favorites() {
   const [userFavorites, setUserFavorites] = useState(null);
-  const [changeUserFavorites, setChangeUserFavorites] = useState();
+  // const [changeUserFavorites, setChangeUserFavorites] = useState();
   const referenceTilDenneBolig = useRef(null);
   useEffect(() => {
     async function getAllMyFavorites() {
