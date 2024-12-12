@@ -1,3 +1,6 @@
 .transparency {
   opacity: 0.5;
 }
+.errorcontrol {
+  color: red;
+}

@@ -1,7 +1,79 @@
+"use client";
+
 import Image from "next/image";
 import classes from "./contactus.module.css";
-
+import { useState } from "react";
 export default function ContactUs() {
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    emne: "",
+    besked: "",
+    declaration: false,
+  });
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const fd = new FormData(event.target);
+    const data = Object.fromEntries(fd.entries());
+    const { name, email, emne, besked, declaration } = data;
+
+    const newErrors = {
+      name: "",
+      email: "",
+      emne: "",
+      besked: "",
+      declaration: "",
+    };
+
+    // Fullname validation
+    if (name.trim() === "") {
+      newErrors.name = "Please enter the name.";
+    } else if (!/^[a-zA-Z\s]+$/.test(name)) {
+      newErrors.name = "Name can only contain letters and spaces.";
+    }
+
+    // Email validation
+    if (email.trim() === "") {
+      newErrors.email = "Email is required.";
+    } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+
+    // Emne validation
+    if (emne.trim() === "") {
+      newErrors.emne = "Emne is required.";
+    }
+
+    // Besked validation
+    if (besked.trim() === "") {
+      newErrors.besked = "Please enter besked.";
+    }
+
+    // Declaration validation
+    if (!declaration) {
+      newErrors.declaration = "Please accept the declaration.";
+    }
+
+    // Update errors state
+    setErrors(newErrors);
+
+    // Check if there are no errors before resetting
+    if (Object.values(newErrors).every((msg) => msg === "")) {
+      alert("Form submitted successfully!");
+      console.log("Your entered data is: ", data);
+
+      event.target.reset();
+      setErrors({
+        name: "",
+        email: "",
+        emne: "",
+        besked: "",
+        declaration: "",
+      });
+    }
+  }
+
   return (
     <>
       <section className="relative h-[100px] md:h-[120px] flex justify-center items-center">
@@ -19,6 +91,80 @@ export default function ContactUs() {
         <h2 className="relative text-white font-semibold text-3xl sm:text-5xl z-10">
           Kontakt os
         </h2>
+      </section>
+      <section>
+        <h2>Vi sidder klar til at besvare dine spørgsmål</h2>
+        <p>
+          Der kan opstå tvivl om mange ting nå man gerne vil, eller er i gang
+          med at sælge sin bolig. Vores medarbejdere sider klar alle ugens dage
+          til at svare på dine spørgsmål.
+        </p>
+      </section>
+      <section className={classes.form}>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="name">Navn</label>
+            <input
+              id="name"
+              type="text"
+              name="name"
+              placeholder="Indtast dit navn"
+            />
+            <div className={classes.errorcontrol}>
+              {errors.name && <p>{errors.name}</p>}
+            </div>
+          </div>
+          <div>
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="Indtast din email"
+            />
+            <div className={classes.errorcontrol}>
+              {errors.email && <p>{errors.email}</p>}
+            </div>
+          </div>
+          <div>
+            <label htmlFor="emne">Emne</label>
+            <input
+              id="emne"
+              type="text"
+              name="emne"
+              placeholder="Indtast emne"
+            />
+            <div className={classes.errorcontrol}>
+              {errors.emne && <p>{errors.emne}</p>}
+            </div>
+          </div>
+          <div>
+            <label htmlFor="besked">Besked</label>
+            <textarea
+              id="besked"
+              name="besked"
+              rows="5"
+              cols="33"
+              placeholder="Indtast din besked... "
+            />
+
+            <div className={classes.errorcontrol}>
+              {errors.confirmPassword && <p>{errors.besked}</p>}
+            </div>
+          </div>
+          <div>
+            <label htmlFor="declaration">
+              <input type="checkbox" id="declaration" name="declaration" />
+              Ja tak, jeg vil gerne modtage Din Mæglers nyhedsbrev.
+            </label>
+            <div className={classes.errorcontrol}>
+              {errors.declaration && <p>{errors.declaration}</p>}
+            </div>
+          </div>
+          <p>
+            <button>Send besked</button>
+          </p>
+        </form>
       </section>
     </>
   );
