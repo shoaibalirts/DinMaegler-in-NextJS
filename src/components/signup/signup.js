@@ -92,11 +92,11 @@ export default function Signup() {
       </section>
       <hr />
       <section className={classes.form}>
-        <h3>Opret bruger hos Din Mægler</h3>
+        <h3 className={classes.formheading}>Opret bruger hos Din Mægler</h3>
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="fullname">Fulde navn</label>
-            <input
+            <label className={classes.label} htmlFor="fullname">Fulde navn</label>
+            <input className={classes.input}
               id="fullname"
               type="text"
               name="fullname"
@@ -107,8 +107,8 @@ export default function Signup() {
             </div>
           </div>
           <div>
-            <label htmlFor="identifier">Email</label>
-            <input
+            <label className={classes.label} htmlFor="identifier">Email</label>
+            <input className={classes.input}
               id="identifier"
               type="email"
               name="identifier"
@@ -119,8 +119,8 @@ export default function Signup() {
             </div>
           </div>
           <div>
-            <label htmlFor="password">Password</label>
-            <input
+            <label className={classes.label} htmlFor="password">Password</label>
+            <input className={classes.input}
               id="password"
               type="password"
               name="password"
@@ -131,8 +131,8 @@ export default function Signup() {
             </div>
           </div>
           <div>
-            <label htmlFor="confirmPassword">Bekræft password</label>
-            <input
+            <label className={classes.label} htmlFor="confirmPassword">Bekræft password</label>
+            <input className={classes.input}
               id="confirmPassword"
               type="password"
               name="confirmPassword"
@@ -143,7 +143,7 @@ export default function Signup() {
             </div>
           </div>
           <p>
-            <button>Opret bruger</button>
+            <button className={classes.button}>Opret bruger</button>
           </p>
         </form>
       </section>

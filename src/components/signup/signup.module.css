@@ -1,3 +1,79 @@
+.transparency {
+  opacity: 0.5;
+}
 .errorcontrol {
   color: red;
 }
+
+/* General form styles */
+.form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 3rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Input and textarea styles */
+.input,
+.textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
+}
+
+/* Label styles */
+.label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Button styles */
+.button {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+/* Error message styles */
+.errorcontrol {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Section transparency overlay */
+.transparency {
+  opacity: 0.9;
+}
+.formheading{
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+

@@ -22,10 +22,7 @@ export default function Login() {
   async function handleSubmission(e) {
     e.preventDefault();
     console.log("Entered Values: ", enteredValues);
-    setEnteredValues({
-      identifier: "",
-      password: "",
-    });
+
     // form validation logic. if entered values are same as  then we have to execute {login}=
     const validPassword = "123456";
 
@@ -57,11 +54,11 @@ export default function Login() {
     setIsPasswordInvalid(false);
   }
 
-  async function handleCurrentUser(event) {
-    event.preventDefault();
-    const currentUser = await getCurrentUser();
-    console.log("current user data: ", currentUser);
-  }
+  // async function handleCurrentUser(event) {
+  //   event.preventDefault();
+  //   const currentUser = await getCurrentUser();
+  //   console.log("current user data: ", currentUser);
+  // }
 
   function handleInputChange(eventEmitterElement, value) {
     setEnteredValues((prevValues) => ({
@@ -86,11 +83,14 @@ export default function Login() {
       </section>
       <hr />
       <section className={classes.form}>
-        <h3>Log ind på din konto</h3>
+        <h3 className={classes.formheading}>Log ind på din konto</h3>
         <form onSubmit={handleSubmission}>
           <div>
-            <label htmlFor="identifier">Email</label>
+            <label className={classes.label} htmlFor="identifier">
+              Email
+            </label>
             <input
+              className={classes.input}
               id="identifier"
               type="email"
               name="identifier"
@@ -101,13 +101,16 @@ export default function Login() {
               value={enteredValues.identifier}
               required
             />
-            <div>
+            <div className={classes.errorcontrol}>
               {isIdentifierInvalid && <p>Please enter the correct email!</p>}
             </div>
           </div>
           <div>
-            <label htmlFor="password">Password</label>
+            <label className={classes.label} htmlFor="password">
+              Password
+            </label>
             <input
+              className={classes.input}
               id="password"
               type="password"
               name="password"
@@ -118,25 +121,25 @@ export default function Login() {
               value={enteredValues.password}
               required
             />
-            <div>
+            <div className={classes.errorcontrol}>
               {isPasswordInvalid && <p>Please enter the correct password!</p>}
             </div>
           </div>
           <p>
-            <button>Log ind</button>
+            <button className={classes.button}>Log ind</button>
           </p>
+          <label>Log ind med </label>
+          <div className={classes.socialmediabuttoncontainer}>
+            <button className={classes.google}>Google</button>
+            <button className={classes.facebook}>Facebook</button>
+            <button className={classes.twitter}>Twitter</button>
+          </div>
+          <div className={classes.opretbruger}>
+            <p>Har du ikke en konto?</p>
+            <Link href="/register" className={classes.registeruserlink}>Opret bruger.</Link>
+          </div>
         </form>
       </section>
-      <section>
-        <button>Google</button>
-        <button>Facebook</button>
-        <button>Twitter</button>
-      </section>
-      <section>
-        <p>Har du ikke en konto?</p>
-        <Link href="/register">Opret bruger.</Link>
-      </section>
-      {/* <button onClick={handleCurrentUser}>Current User</button> */}
     </>
   );
 }

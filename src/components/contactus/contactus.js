@@ -45,9 +45,12 @@ export default function ContactUs() {
       newErrors.emne = "Emne is required.";
     }
 
-    // Besked validation
     if (besked.trim() === "") {
-      newErrors.besked = "Please enter besked.";
+      newErrors.besked = "Please enter a message.";
+    } else if (besked.length < 10) {
+      newErrors.besked = "Message must be at least 10 characters long.";
+    } else if (besked.length > 500) {
+      newErrors.besked = "Message cannot exceed 500 characters.";
     }
 
     // Declaration validation
@@ -102,33 +105,44 @@ export default function ContactUs() {
       </section>
       <section className={classes.form}>
         <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="name">Navn</label>
-            <input
-              id="name"
-              type="text"
-              name="name"
-              placeholder="Indtast dit navn"
-            />
-            <div className={classes.errorcontrol}>
-              {errors.name && <p>{errors.name}</p>}
+          <div className={classes.nameandemail}>
+            <div>
+              <label className={classes.label} htmlFor="name">
+                Navn
+              </label>
+              <input
+                className={classes.input}
+                id="name"
+                type="text"
+                name="name"
+                placeholder="Indtast dit navn"
+              />
+              <div className={classes.errorcontrol}>
+                {errors.name && <p>{errors.name}</p>}
+              </div>
+            </div>
+            <div>
+              <label className={classes.label} htmlFor="email">
+                Email
+              </label>
+              <input
+                className={classes.input}
+                id="email"
+                type="email"
+                name="email"
+                placeholder="Indtast din email"
+              />
+              <div className={classes.errorcontrol}>
+                {errors.email && <p>{errors.email}</p>}
+              </div>
             </div>
           </div>
           <div>
-            <label htmlFor="email">Email</label>
+            <label className={classes.label} htmlFor="emne">
+              Emne
+            </label>
             <input
-              id="email"
-              type="email"
-              name="email"
-              placeholder="Indtast din email"
-            />
-            <div className={classes.errorcontrol}>
-              {errors.email && <p>{errors.email}</p>}
-            </div>
-          </div>
-          <div>
-            <label htmlFor="emne">Emne</label>
-            <input
+              className={classes.input}
               id="emne"
               type="text"
               name="emne"
@@ -139,8 +153,11 @@ export default function ContactUs() {
             </div>
           </div>
           <div>
-            <label htmlFor="besked">Besked</label>
+            <label className={classes.label} htmlFor="besked">
+              Besked
+            </label>
             <textarea
+              className={classes.textarea}
               id="besked"
               name="besked"
               rows="5"
@@ -149,12 +166,17 @@ export default function ContactUs() {
             />
 
             <div className={classes.errorcontrol}>
-              {errors.confirmPassword && <p>{errors.besked}</p>}
+              {errors.besked && <p>{errors.besked}</p>}
             </div>
           </div>
           <div>
-            <label htmlFor="declaration">
-              <input type="checkbox" id="declaration" name="declaration" />
+            <label className={classes.label} htmlFor="declaration">
+              <input
+                className={classes.label}
+                type="checkbox"
+                id="declaration"
+                name="declaration"
+              />
               Ja tak, jeg vil gerne modtage Din Mæglers nyhedsbrev.
             </label>
             <div className={classes.errorcontrol}>
@@ -162,7 +184,7 @@ export default function ContactUs() {
             </div>
           </div>
           <p>
-            <button>Send besked</button>
+            <button className={classes.button}>Send besked</button>
           </p>
         </form>
       </section>

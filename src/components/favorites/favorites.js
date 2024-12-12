@@ -82,10 +82,22 @@ export default function Favorites() {
                     <p>{home.postalcode}</p>
                     <p>{home.city}</p>
                   </div>
+                  <div>
+                    <p>{home.type}.</p>
+                    <p>Ejerudgift:{home.cost}Kr.</p>
+                  </div>
+                  <div>
+                    <p>{home.energylabel}</p>
+                    <p>{home.rooms}værelser.</p>
+                    <p>{home.floorplan.size}m²</p>
+                  </div>
+                  <div>
+                    <p>{home.price}Kr.</p>
+                  </div>
                 </article>
               </Link>
 
-              <button
+              <button className={classes.button}
                 onClick={() => {
                   handleChangeFavorite(home.id);
                   handleUpdateUI();
