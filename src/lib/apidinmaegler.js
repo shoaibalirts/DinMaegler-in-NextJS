@@ -15,12 +15,37 @@ export async function getAuthorization(enteredValues) {
         password: enteredValues.password,
       }),
     });
-    console.log(enteredValues);
+    // console.log(enteredValues);
+    // console.log("Response: ", response);
 
     const data = await response.json();
+    console.log("data: ", data);
+
+    // let credential = {
+    //   identifier: "",
+    //   password: "",
+    // };
+    // if (enteredValues.identifier !== data.user.identifier) {
+    //   console.log("invalid email......");
+
+    //   credential = {
+    //     identifier: "invalidEmail",
+    //     password: "",
+    //   };
+    // }
+    // if (enteredValues.password !== "123456") {
+    //   console.log("invalid password...........");
+
+    //   credential = {
+    //     identifier: "",
+    //     password: "invalidPassword",
+    //   };
+    // }
+
     if (!response.ok) {
-      console.log("here is an error page...");
-      return "unsuccessful";
+      console.log("here is an error...");
+      // return credential;
+      return "unsuccessfull";
     } else {
       const cookieStore = await cookies();
       cookieStore.set("myToken", data.jwt);

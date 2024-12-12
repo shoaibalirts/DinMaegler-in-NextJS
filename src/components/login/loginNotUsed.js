@@ -7,15 +7,15 @@ import { getAuthorization, getCurrentUser } from "@/lib/apidinmaegler";
 import { useRouter } from "next/navigation";
 import { useLogin } from "@/store/login-context";
 
-export default function Login() {
+export default function LoginNotUsedInThisProject() {
   const router = useRouter();
   const [enteredValues, setEnteredValues] = useState({
     identifier: "",
     password: "",
   });
   // these two states used for the purpose of updating the UI
-  const [isIdentifierInvalid, setIsIdentifierInvalid] = useState(false);
-  const [isPasswordInvalid, setIsPasswordInvalid] = useState(false);
+  const [isIdentifierValid, setIsIdentifierValid] = useState(false);
+  const [isPasswordValid, setIsPasswordValid] = useState(false);
 
   const { login } = useLogin();
 
@@ -27,30 +27,16 @@ export default function Login() {
       password: "",
     });
     // form validation logic. if entered values are same as  then we have to execute {login}=
-    const validPassword = "123456";
 
     const data = await getAuthorization(enteredValues);
-    console.log("data: ", data); //  success or unsuccessful
-    if (enteredValues.password !== validPassword || data === "unsuccessfull") {
-      setIsIdentifierInvalid(true);
-      setIsPasswordInvalid(true);
-      return;
-    }
-    // else if (enteredValues.password !== validPassword) {
-    //   setIsPasswordInvalid(true);
-    //   return;
-    // } else if (data === "unsuccessfull") {
-    //   setIsIdentifierInvalid(true);
-    //   return;
-    // }
-    else if (data.myToken) {
+    console.log("data: ", data); // success or unsuccessful
+
+    if (data.myToken) {
       login(data.myToken);
     } else {
-      window.location.reload();
+      console.log(data);
+      // window.location.reload();
     }
-
-    setIsIdentifierInvalid(false);
-    setIsPasswordInvalid(false);
   }
 
   async function handleCurrentUser(event) {
@@ -84,7 +70,7 @@ export default function Login() {
       <section className={classes.form}>
         <h3>Log ind på din konto</h3>
         <form onSubmit={handleSubmission}>
-          <div>
+          <p>
             <label htmlFor="identifier">Email</label>
             <input
               id="identifier"
@@ -97,11 +83,8 @@ export default function Login() {
               value={enteredValues.identifier}
               required
             />
-            <div>
-              {isIdentifierInvalid && <p>Please enter the correct email!</p>}
-            </div>
-          </div>
-          <div>
+          </p>
+          <p>
             <label htmlFor="password">Password</label>
             <input
               id="password"
@@ -114,10 +97,7 @@ export default function Login() {
               value={enteredValues.password}
               required
             />
-            <div>
-              {isPasswordInvalid && <p>Please enter the correct password!</p>}
-            </div>
-          </div>
+          </p>
           <p>
             <button>Log ind</button>
           </p>

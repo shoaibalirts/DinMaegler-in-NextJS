@@ -1,0 +1,16 @@
+.footerRingMailButik {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem;
+  gap: 1rem;
+}
+.background {
+  width: 5rem;
+  height: 5rem;
+  background-color: black;
+  border-radius: 50%;
+}
+.quicklinks {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
