@@ -31,7 +31,11 @@ export default function Login() {
 
     const data = await getAuthorization(enteredValues);
     console.log("data: ", data); //  success or unsuccessful
-    if (enteredValues.password !== validPassword || data === "unsuccessfull") {
+    if (
+      enteredValues.password !== validPassword ||
+      data === "unsuccessfull" ||
+      !enteredValues.identifier.includes("@")
+    ) {
       setIsIdentifierInvalid(true);
       setIsPasswordInvalid(true);
       return;

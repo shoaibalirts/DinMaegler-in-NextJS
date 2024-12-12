@@ -1,16 +1,78 @@
 "use client";
 
+import { useState } from "react";
 import classes from "./signup.module.css";
 import Image from "next/image";
+
 export default function Signup() {
+  const [errors, setErrors] = useState({
+    fullname: "",
+    identifier: "",
+    password: "",
+    confirmPassword: "",
+  });
+
   function handleSubmit(event) {
     event.preventDefault();
     const fd = new FormData(event.target);
     const data = Object.fromEntries(fd.entries());
-    console.log("Signup data: ", data);
-    event.target.reset();
-    console.log("cleared Signup data: ", data);
+    const { fullname, identifier, password, confirmPassword } = data;
 
+    const newErrors = {
+      fullname: "",
+      identifier: "",
+      password: "",
+      confirmPassword: "",
+    };
+
+    // Fullname validation
+    if (fullname.trim() === "") {
+      newErrors.fullname = "Please enter the full name.";
+    } else if (!/^[a-zA-Z\s]+$/.test(fullname)) {
+      newErrors.fullname = "Fullname can only contain letters and spaces.";
+    }
+
+    // Email validation
+    if (identifier.trim() === "") {
+      newErrors.identifier = "Email is required.";
+    } else if (!/^\S+@\S+\.\S+$/.test(identifier)) {
+      newErrors.identifier = "Please enter a valid email address.";
+    }
+
+    // Password validation
+    if (password.trim() === "") {
+      newErrors.password = "Password is required.";
+    } else if (password.length < 7) {
+      newErrors.password = "Password must be at least 7 characters long.";
+    }
+
+    // Confirm Password validation
+    if (confirmPassword.trim() === "") {
+      newErrors.confirmPassword = "Please confirm your password.";
+    } else if (confirmPassword !== password) {
+      newErrors.confirmPassword = "Passwords do not match.";
+    }
+
+    // Update errors state
+    setErrors(newErrors);
+
+    // Check if there are no errors before resetting
+    if (Object.values(newErrors).every((msg) => msg === "")) {
+      alert("Form submitted successfully!");
+      console.log("Your entered data is: ");
+      console.log("Fullname: ", fullname);
+      console.log("Identifier/Email: ", identifier);
+      console.log("Password: ", password);
+      console.log("Confirm Password: ", confirmPassword);
+
+      event.target.reset();
+      setErrors({
+        fullname: "",
+        identifier: "",
+        password: "",
+        confirmPassword: "",
+      });
+    }
   }
 
   return (
@@ -32,7 +94,7 @@ export default function Signup() {
       <section className={classes.form}>
         <h3>Opret bruger hos Din Mægler</h3>
         <form onSubmit={handleSubmit}>
-          <p>
+          <div>
             <label htmlFor="fullname">Fulde navn</label>
             <input
               id="fullname"
@@ -40,8 +102,11 @@ export default function Signup() {
               name="fullname"
               placeholder="Fulde navn"
             />
-          </p>
-          <p>
+            <div className={classes.errorcontrol}>
+              {errors.fullname && <p>{errors.fullname}</p>}
+            </div>
+          </div>
+          <div>
             <label htmlFor="identifier">Email</label>
             <input
               id="identifier"
@@ -49,8 +114,11 @@ export default function Signup() {
               name="identifier"
               placeholder="Email"
             />
-          </p>
-          <p>
+            <div className={classes.errorcontrol}>
+              {errors.identifier && <p>{errors.identifier}</p>}
+            </div>
+          </div>
+          <div>
             <label htmlFor="password">Password</label>
             <input
               id="password"
@@ -58,8 +126,11 @@ export default function Signup() {
               name="password"
               placeholder="Password"
             />
-          </p>
-          <p>
+            <div className={classes.errorcontrol}>
+              {errors.password && <p>{errors.password}</p>}
+            </div>
+          </div>
+          <div>
             <label htmlFor="confirmPassword">Bekræft password</label>
             <input
               id="confirmPassword"
@@ -67,7 +138,10 @@ export default function Signup() {
               name="confirmPassword"
               placeholder="Bekræft password"
             />
-          </p>
+            <div className={classes.errorcontrol}>
+              {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+            </div>
+          </div>
           <p>
             <button>Opret bruger</button>
           </p>
