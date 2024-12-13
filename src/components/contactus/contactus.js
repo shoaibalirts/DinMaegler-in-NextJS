@@ -95,9 +95,11 @@ export default function ContactUs() {
           Kontakt os
         </h2>
       </section>
-      <section>
-        <h2>Vi sidder klar til at besvare dine spørgsmål</h2>
-        <p>
+      <section className={classes.contactuscontainer}>
+        <h2 className={classes.heading}>
+          Vi sidder klar til at besvare dine spørgsmål
+        </h2>
+        <p className={classes.paragraphcontainer}>
           Der kan opstå tvivl om mange ting nå man gerne vil, eller er i gang
           med at sælge sin bolig. Vores medarbejdere sider klar alle ugens dage
           til at svare på dine spørgsmål.

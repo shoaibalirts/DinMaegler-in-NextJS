@@ -30,13 +30,13 @@ export default function Article({
     await HandleMyFavorite(boligId);
   }
 
-  const backgroundColor = {
-    A: "red",
-    B: "yellow",
-    C: "orange",
-    D: "blue",
-  };
-  //[energyLabel] || "green";
+  const backgroundColor =
+    {
+      A: "red",
+      B: "yellow",
+      C: "orange",
+      D: "blue",
+    }[energyLabel] || "green";
 
   return (
     <article className={classes.article}>
