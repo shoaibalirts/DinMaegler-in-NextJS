@@ -3,22 +3,18 @@ import Image from "next/image";
 import classes from "./article.module.css";
 import Link from "next/link";
 import { useLogin } from "@/store/login-context";
-import { getFavorites, getCurrentUser } from "@/lib/apidinmaegler";
+import { HandleMyFavorite } from "../utils/handlefavorite";
 import { useState } from "react";
 import HeartIcon from "./hearticon";
-import { HandleMyFavorite } from "../utils/handlefavorite";
 
 export default function Article({
   articleId,
-  index,
   imgSrc,
-  imgWidth,
-  imgHeight,
   alt,
   address,
-  boligType,
   postalCode,
   city,
+  boligType,
   ejerUdgifter,
   energyLabel,
   rooms,
@@ -26,56 +22,25 @@ export default function Article({
   price,
   boligId,
 }) {
-  const { isLoggedIn, logout } = useLogin();
-  const [toggleColor, setToggleColor] = useState(true);
-  // let heartIconclasses = {
-  //   color: "white",
-  // };
+  const { isLoggedIn } = useLogin();
+  const [isFavorite, setIsFavorite] = useState(false);
 
-  // console.log(boligId);
-  async function handleFavorite(boligId) {
+  async function handleFavoriteClick(boligId) {
+    setIsFavorite((prev) => !prev); // Toggle the state
     await HandleMyFavorite(boligId);
   }
-  /*
-  async function handleFavorite(homeId) {
 
-    const myHomesObject = await getCurrentUser();
-    const { homes } = { homes: myHomesObject.homes };
-    const existsSpecificHomeId = homes.indexOf(homeId);
-
-    if (existsSpecificHomeId === -1) {
-
-      homes.push(homeId);
-      await getFavorites(homes);
-    } else {
-      heartIconclasses = { color: "red" };
-      const filteredArray = homes.filter((id) => id !== homeId);
-      await getFavorites(filteredArray);
-    }
-  }
-  */
-  let backgroundColor = "green";
-  if (energyLabel === "A") {
-    backgroundColor = "red";
-  } else if (energyLabel === "B") {
-    backgroundColor = "yellow";
-  } else if (energyLabel === "C") {
-    backgroundColor = "orange";
-  } else if (energyLabel === "D") {
-    backgroundColor = "blue";
-  }
-  const myStyle = {
-    backgroundColor: backgroundColor,
+  const backgroundColor = {
+    A: "red",
+    B: "yellow",
+    C: "orange",
+    D: "blue",
   };
-  let random = Math.floor(Math.random() * 10 + 1);
-  // console.log(random);
+  //[energyLabel] || "green";
 
   return (
     <article className={classes.article}>
-      <Link
-        href={`/boligdetails/${articleId}`}
-        key={`articleboligertilsalg-${random}`}
-      >
+      <Link href={`/boligdetails/${articleId}`}>
         <div className={classes.homeimageandheartContainer}>
           <Image
             className={classes.image}
@@ -88,22 +53,16 @@ export default function Article({
           {isLoggedIn && (
             <button
               onClick={(e) => {
-                if (e.target.closest("button")) {
-                  e.preventDefault();
-                  handleFavorite(boligId);
-                }
+                e.preventDefault();
+                handleFavoriteClick(boligId);
               }}
               className={classes.btnPadding}
             >
-              {/* <Image
-                className={classes.heart}
-                src="/images/heart.svg"
-                width={20}
-                height={20}
-                alt={alt}
-                priority
-              /> */}
-              <div className={classes.heart}>
+              <div
+                className={`${classes.heart} ${
+                  isFavorite ? classes.fillHeartColor : ""
+                }`}
+              >
                 <HeartIcon />
               </div>
             </button>
@@ -123,7 +82,7 @@ export default function Article({
           </div>
           <hr />
           <div className={classes.energylabelcontainer}>
-            <p style={myStyle} className={classes.energylabel}>
+            <p style={{ backgroundColor }} className={classes.energylabel}>
               {energyLabel}
             </p>
             <p className={classes.rooms}>{rooms} værelser.</p>
