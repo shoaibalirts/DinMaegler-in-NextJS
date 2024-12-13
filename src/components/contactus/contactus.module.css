@@ -5,7 +5,6 @@
   color: red;
 }
 
-/* General form styles */
 .form {
   max-width: 600px;
   margin: 20px auto;
@@ -16,7 +15,6 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Input and textarea styles */
 .input,
 .textarea {
   width: 100%;
@@ -34,7 +32,6 @@
   box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
 }
 
-/* Label styles */
 .label {
   display: block;
   font-weight: bold;
@@ -42,7 +39,6 @@
   color: #333;
 }
 
-/* Button styles */
 .button {
   background-color: #007bff;
   color: white;
@@ -58,14 +54,12 @@
   background-color: #0056b3;
 }
 
-/* Error message styles */
 .errorcontrol {
   color: red;
   font-size: 14px;
   margin-top: 5px;
 }
 
-/* Section transparency overlay */
 .transparency {
   opacity: 0.9;
 }

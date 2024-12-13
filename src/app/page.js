@@ -95,10 +95,10 @@ export default async function Home() {
             Se alle mæglere
           </Link>
         </AgentsSection>
-        <OpdateringSection />
+        {/* <OpdateringSection /> */}
       </main>
 
-      <Footer>Footer section Should be completed at the end of project</Footer>
+      <Footer></Footer>
     </>
   );
 }
