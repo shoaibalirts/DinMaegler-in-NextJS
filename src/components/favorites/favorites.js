@@ -18,6 +18,11 @@ export default function Favorites() {
     async function getAllMyFavorites() {
       const homesIdsArray = await getCurrentUser();
       console.log("homesIdsArray: ", homesIdsArray);
+      if (homesIdsArray === null) {
+        console.log("You have to login in order to see your favorites.");
+
+        return;
+      }
       const homesData = homesIdsArray.homes.map((homeId) =>
         getHomeDetail(homeId)
       );
@@ -31,7 +36,6 @@ export default function Favorites() {
     // console.log("Current User Data: ", userData);
   }, []);
 
-  let randomFunc = () => Math.floor(Math.random() * 1000 + 1);
   async function handleChangeFavorite(boligId) {
     await HandleMyFavorite(boligId);
   }
@@ -41,6 +45,8 @@ export default function Favorites() {
 
     referenceTilDenneBolig.current.remove();
   }
+  let randomFunc = () => Math.floor(Math.random() * 10000 + 1);
+
   return (
     <>
       <section className="relative h-[100px] md:h-[120px] flex justify-center items-center">
@@ -63,12 +69,12 @@ export default function Favorites() {
       <section className={classes.favoritesArticles}>
         {userFavorites !== null ? (
           userFavorites.map((home) => (
-            <div>
-              <Link href={`boligdetails/${home.id}`}>
-                <article
-                  key={`favorites-${randomFunc()}`}
-                  ref={referenceTilDenneBolig}
-                >
+            <Link
+              href={`boligdetails/${home.id}`}
+              key={`favorites-${randomFunc()}`}
+            >
+              <article ref={referenceTilDenneBolig} className={classes.article}>
+                <div className={classes.div}>
                   <Image
                     src={home.images[0].url}
                     width={300}
@@ -76,39 +82,45 @@ export default function Favorites() {
                     alt={home.images[0].name}
                     priority
                   />
-
+                </div>
+                <div className={classes.div}>
                   <p>{home.adress1}</p>
-                  <div>
+                  <div className={classes.postalcodeandcity}>
                     <p>{home.postalcode}</p>
                     <p>{home.city}</p>
                   </div>
                   <div>
                     <p>{home.type}.</p>
-                    <p>Ejerudgift:{home.cost}Kr.</p>
+                    <p>Ejerudgift: {home.cost} Kr.</p>
                   </div>
-                  <div>
+                </div>
+                <div className={classes.div}>
+                  <div className={classes.postalcodeandcity}>
                     <p>{home.energylabel}</p>
-                    <p>{home.rooms}værelser.</p>
-                    <p>{home.floorplan.size}m²</p>
+                    <p>{home.rooms} værelser.</p>
+                    <p>{home.floorplan.size} m²</p>
                   </div>
-                  <div>
-                    <p>{home.price}Kr.</p>
-                  </div>
-                </article>
-              </Link>
-
-              <button className={classes.button}
-                onClick={() => {
-                  handleChangeFavorite(home.id);
-                  handleUpdateUI();
-                }}
-              >
-                Fjern denne bolig
-              </button>
-            </div>
+                </div>
+                <div className={classes.div}>
+                  <p>{home.price} Kr.</p>
+                  <button
+                    className={classes.button}
+                    onClick={() => {
+                      handleChangeFavorite(home.id);
+                      handleUpdateUI();
+                    }}
+                  >
+                    Fjern denne bolig
+                  </button>
+                </div>
+              </article>
+            </Link>
           ))
         ) : (
-          <p>Loading Your Favourite Homes...</p>
+          <div>
+            {/* <Error /> */}
+            <p>Loading Your Favourite Homes...</p>
+          </div>
         )}
       </section>
     </>

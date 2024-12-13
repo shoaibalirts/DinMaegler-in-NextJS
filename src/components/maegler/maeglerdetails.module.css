@@ -1,4 +1,5 @@
 .agentinfo {
+  margin-top: 3rem;
   display: flex;
   gap: 2rem;
 }
@@ -27,7 +28,7 @@
 .form {
   max-width: 600px;
   margin: 20px auto;
-  padding: 20px;
+  padding: 2rem;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f9;
@@ -92,4 +93,15 @@
   margin-bottom: 2rem;
   font-size: 1.2rem;
   font-weight: 500;
+}
+
+.agentname {
+  margin: 1rem 0;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.topcontainer {
+  padding: 0 20%;
 }

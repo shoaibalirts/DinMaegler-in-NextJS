@@ -75,7 +75,7 @@ export default function MaeglerDetails({ agent }) {
   return (
     <>
       <div className={classes.twoparts}>
-        <div>
+        <div className={classes.topcontainer}>
           <section className={classes.agentinfo}>
             <div className={classes.agentimagecontainer}>
               <Image
@@ -87,7 +87,7 @@ export default function MaeglerDetails({ agent }) {
               />
             </div>
             <div>
-              <h4>{agent.name}</h4>
+              <h4 className={classes.agentname}>{agent.name}</h4>
               <p>{agent.title}</p>
               <hr className={classes.hr} />
               <div className={classes.phoneandemail}>
@@ -102,28 +102,28 @@ export default function MaeglerDetails({ agent }) {
           </section>
 
           <article>
-            <h3>Om {agent.name}</h3>
+            <h3 className={classes.agentname}>Om {agent.name}</h3>
             <p>{agent.description}</p>
           </article>
-        </div>
-        <section className={classes.searchcontainer}>
-          <h3 className={classes.searchheading}>Search Property</h3>
+          {/* <section className={classes.searchcontainer}>
+            <h3 className={classes.searchheading}>Search Property</h3>
 
-          <search>
-            <form>
-              <input name="search" type="text" />
-              <button>
-                <CiSearch />
-              </button>
-            </form>
-          </search>
-          <div>
-            <p>Find The Best Property For Rent Or Buy</p>
-            <hr />
-            <p>Call Us Now</p>
-            <p>+00 123 456 789</p>
-          </div>
-        </section>
+            <search>
+              <form>
+                <input name="search" type="text" />
+                <button>
+                  <CiSearch />
+                </button>
+              </form>
+            </search>
+            <div>
+              <p>Find The Best Property For Rent Or Buy</p>
+              <hr />
+              <p>Call Us Now</p>
+              <p>+00 123 456 789</p>
+            </div>
+          </section> */}
+        </div>
       </div>
       <section className={classes.form}>
         <form onSubmit={handleSubmit}>

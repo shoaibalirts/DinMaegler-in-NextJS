@@ -2,65 +2,40 @@
 .transparency {
   opacity: 0.9;
 }
-
-.search {
-  margin: 20px auto;
-  max-width: 800px;
-  text-align: center;
-}
-
 .favoritesArticles {
+  padding: 0 20%;
+  margin-top: 2rem;
+}
+.article {
+  border: 1px solid #ccc;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 200px 200px 200px 200px;
+  grid-template-rows: auto;
+  gap: 1rem;
+}
+
+.article > div {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-}
-
-.favoritesArticles div {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  width: 100%;
-  max-width: 100%;
-}
-
-.favoritesArticles article {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 15px;
-}
-
-.favoritesArticles article p {
-  margin: 10px 0;
-  color: #333;
-  font-size: 16px;
-  text-align: center;
-}
-
-.favoritesArticles article div {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  gap: 10px;
 }
 
 .button {
-  background-color: #ff4d4d;
+  margin-top: 5rem;
+  background-color: black;
   color: white;
-  padding: 10px 15px;
   border: none;
-  border-radius: 4px;
-  font-size: 14px;
+  padding: 0.5rem 1rem;
   cursor: pointer;
-  margin: 10px;
+  border-radius: 4px;
   transition: background-color 0.3s ease;
 }
 
 .button:hover {
-  background-color: #cc0000;
+  background-color: #005bb5;
+}
+
+.postalcodeandcity {
+  display: flex;
+  gap: 1rem;
 }
