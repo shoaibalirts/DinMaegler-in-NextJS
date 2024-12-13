@@ -59,3 +59,36 @@
     opacity: 1;
   }
 }
+
+.errorcontrol {
+  color: red;
+}
+
+.transparency {
+  opacity: 0.9;
+}
+.searchSection {
+  /* position: absolute;
+  top: 0; */
+
+  padding: 0 20%;
+  margin-top: 2rem;
+}
+.searcharticle {
+  border: 1px solid #ccc;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 200px 200px 200px 200px;
+  grid-template-rows: auto;
+  gap: 1rem;
+}
+
+.searcharticle > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.searchpostalcodeandcity {
+  display: flex;
+  gap: 1rem;
+}

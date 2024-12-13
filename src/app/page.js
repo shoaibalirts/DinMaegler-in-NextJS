@@ -7,6 +7,7 @@ import Hero from "@/components/herosection/hero";
 import {
   getAllAgents,
   getAllHomes,
+  getHomesByType,
   getNumberOfHomesOnSale,
 } from "@/lib/apidinmaegler";
 import Introduction from "@/components/introductionSection/introduction";
@@ -21,6 +22,10 @@ import OpdateringSection from "@/components/opdateringSection/opdateringSection"
 export default async function Home() {
   const allHomesData = await getAllHomes();
   const allAgents = await getAllAgents();
+  const allEjerlejlighed = await getHomesByType("Ejerlejlighed");
+  const allVilla = await getHomesByType("Villa");
+  const allLandejendom = await getHomesByType("Landejendom");
+  const allByhus = await getHomesByType("Byhus");
 
   const numberOfHomesOnSale = await getNumberOfHomesOnSale();
   // console.log("allHomesData", allHomesData);
@@ -46,7 +51,15 @@ export default async function Home() {
     <>
       <Header></Header>
       <main>
-        <Hero heroData={heroDataObj} />
+        <Hero
+          heroData={heroDataObj}
+          allHomesData={allHomesData}
+          allAgents={allAgents}
+          allEjerlejlighed={allEjerlejlighed}
+          allVilla={allVilla}
+          allLandejendom={allLandejendom}
+          allByhus={allByhus}
+        />
         <Introduction />
         <ThreeArticlesSection />
         <UdvalgteBoligerSection heading={heading} text={text}>
