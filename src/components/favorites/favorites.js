@@ -40,9 +40,9 @@ export default function Favorites() {
     await HandleMyFavorite(boligId);
   }
 
-  function handleUpdateUI() {
+  function handleUpdateUI(e) {
     console.log(referenceTilDenneBolig.current);
-
+    e.preventDefault();
     referenceTilDenneBolig.current.remove();
   }
   let randomFunc = () => Math.floor(Math.random() * 10000 + 1);
@@ -105,9 +105,9 @@ export default function Favorites() {
                   <p>{home.price} Kr.</p>
                   <button
                     className={classes.button}
-                    onClick={() => {
+                    onClick={(e) => {
                       handleChangeFavorite(home.id);
-                      handleUpdateUI();
+                      handleUpdateUI(e);
                     }}
                   >
                     Fjern denne bolig
