@@ -6,7 +6,7 @@ import GalleryFloorMap from "@/components/galleryFloorMap/galleryFloorMap";
 import BoligDetails from "@/components/boligdetails/boligdetails";
 import BoligFacts from "@/components/boligdetails/boligfacts";
 export default async function BoligDetailsPage({ params }) {
-  const { id } = await params;
+  const id = (await params).id;
   const boligDetailData = await getHomeDetail(id);
   // console.log("BoligDetail: ", boligDetailData);
   return (

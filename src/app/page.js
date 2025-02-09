@@ -38,7 +38,11 @@ export default async function Home() {
     numberOfHomesOnSale: numberOfHomesOnSale,
     numberOfButikker: 74,
   };
+  console.log("allHomesData: ",allHomesData);
+  
   const limitedArticles = allHomesData.slice(0, 4);
+  console.log("limitedHomesData: ",limitedArticles);
+
   const limitedAgents = allAgents.slice(0, 3);
   const heading = "Udvalgte Boliger";
   const text =
