@@ -24,7 +24,8 @@ export function LoginProvider({ children }) {
   const login = (token) => {
     setIsLoggedIn(true);
     setCookie(null, "myToken", token, { path: "/" }); // Store the token in cookies
-    router.push("/boligertilsalg");
+    
+    // router.push("/boligertilsalg");
 
   };
 
@@ -35,7 +36,7 @@ export function LoginProvider({ children }) {
       destroyCookie(null, "myToken", { path: "/" }); // Remove the token from cookies
       destroyCookie(null, "userId", { path: "/" }); // Remove the token from cookies
 
-      router.push("/login");
+      router.push("/boligertilsalg");
 
     }
   };

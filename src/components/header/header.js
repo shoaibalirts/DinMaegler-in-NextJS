@@ -7,13 +7,8 @@ import PaperPlaneIcon from "../paperplaneicon";
 import PersonIcon from "../personicon";
 import { useLogin } from "@/store/login-context";
 
-// consuming context value here because we have to render conditionally based on the login state true or false
-// import { useContext } from "react";
-// import { LoginContext } from "@/store/login-context";
-
-export default function Header({ children }) {
-  // let ctxValue = useContext(LoginContext);
-  // console.log("ctx value: ",ctxValue);
+export default function Header() {
+  
   const { isLoggedIn, logout } = useLogin();
 
   return (
@@ -34,7 +29,7 @@ export default function Header({ children }) {
             
             <button onClick={logout}>Log ud</button>
           ) : (
-            <Link href="/login">
+            <Link href="/login" alt="login">
               <PersonIcon />
               <p>Log ind</p>
             </Link>
