@@ -50,7 +50,7 @@ export default async function Home() {
   const agentsHeading = "Mød vores engagerede medarbejdere";
   const agentsText =
     "Din Mægler er garant for altid veluddannet assistance i dit boligsalg. Kontakt en af vores medarbejdere.";
-  let random = Math.floor(Math.random() * 100 + 1);
+  let random = Math.floor(Math.random() * 100000000 + 1);
   return (
     <>
       <Header></Header>
@@ -68,7 +68,7 @@ export default async function Home() {
         <ThreeArticlesSection />
         <UdvalgteBoligerSection heading={heading} text={text}>
           {limitedArticles.map((article, index) => (
-            <Link href={`/boligdetails/${article.id}`} key={`udvalgtearticle-${random}`}>
+            <Link href={`/boligdetails/${article.id}`} key={`udvalgtearticle-${index}`}>
               <Article
                 imgSrc={article.images[0].url}
                 imgWidth={article.images[0].width}
@@ -94,9 +94,8 @@ export default async function Home() {
         {/* <NyhedsBrevSection /> */}
         <AgentsSection heading={agentsHeading} text={agentsText}>
           {limitedAgents.map((article, index) => (
-            <Link href={`/maegler/${article.id}`}>
+            <Link href={`/maegler/${article.id}`} key={`agents-${index}`}>
               <AgentArticle
-                key={`agents-${index}`}
                 imgSrc={article.image.url}
                 imgWidth={article.image.width}
                 imgHeight={article.image.height}
