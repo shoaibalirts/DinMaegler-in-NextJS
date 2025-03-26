@@ -44,9 +44,9 @@ export default async function MaeglerPage() {
         </section>
         <AgentsSection>
           {allAgents.map((article, index) => (
-            <Link href={`/maegler/${article.id}`}>
+            <Link href={`/maegler/${article.id}`} key={`agents-${index}`}>
               <AgentArticle
-                key={`agents-${random}`}
+                
                 imgSrc={article.image.url}
                 imgWidth={article.image.width}
                 imgHeight={article.image.height}
