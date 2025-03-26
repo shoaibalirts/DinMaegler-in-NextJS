@@ -68,9 +68,8 @@ export default async function Home() {
         <ThreeArticlesSection />
         <UdvalgteBoligerSection heading={heading} text={text}>
           {limitedArticles.map((article, index) => (
-            <Link href={`/boligdetails/${article.id}`}>
+            <Link href={`/boligdetails/${article.id}`} key={`udvalgtearticle-${random}`}>
               <Article
-                key={`udvalgtearticle-${random}`}
                 imgSrc={article.images[0].url}
                 imgWidth={article.images[0].width}
                 imgHeight={article.images[0].height}
