@@ -11,7 +11,7 @@ import {
   getNumberOfHomesOnSale,
 } from "@/lib/apidinmaegler";
 import Introduction from "@/components/introductionSection/introduction";
-import ThreeArticlesSection from "@/components/threearticlesSection/ThreearticlesSection";
+import ThreeArticlesSection from "@/components/threearticlesSection/threearticlesSection";
 import UdvalgteBoligerSection from "@/components/udvalgteboligerSection/udvalgteboligerSection";
 import Article from "@/components/udvalgteboligerSection/article";
 import AgentArticle from "@/components/agentsSection/article";
